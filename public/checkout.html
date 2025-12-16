@@ -6,10 +6,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Checkout — BD Fashion</title>
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/public/CSS/styles.css">
 </head>
 
-<body class="bg-gray-50">
+<body style="background:#ffffff;">
   <!-- Header -->
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
@@ -215,6 +215,12 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    if (!localStorage.getItem("token")) {
+      window.location.href = "/public/login.html";
+    }
+  </script>
 
   <script src="https://js.stripe.com/v3/"></script>
 

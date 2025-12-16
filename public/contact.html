@@ -172,7 +172,11 @@
       </div>
     </div>
   </footer>
-
+  <script>
+    if (!localStorage.getItem("token")) {
+      window.location.href = "/public/login.html";
+    }
+  </script>
 
   <script src="js/contact.js" defer></script>
 
