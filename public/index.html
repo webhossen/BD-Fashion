@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BD Fashion</title>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+  <link rel="stylesheet" href="/public/CSS/styles.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/public/Image/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="/public/Image/favicon-64.png">
+  <link rel="icon" type="image/png" sizes="128x128" href="/public/Image/favicon-128.png">
+  <link rel="icon" type="image/png" sizes="256x256" href="/public/Image/favicon-256.png">
+  <style>
+    .product-card {
+      transition: 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgb(0, 0, 0);
+    }
+  </style>
+
+</head>
+
+
+<body class="bg-gray-50">
+  <!-- Header/Navbar -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center">
+        <img src="/public/Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+      </a>
+
+      <nav id="main-nav">
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#products" class="nav-link">Products</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="cart.html" class="nav-link">Cart</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="login.html"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition">Login</a>
+        <a href="products.html"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition">Shop</a>
+        <a href="cart.html" class="px-4 py-2 text-blue-600 hover:text-blue-800 transition text-2xl" title="Cart">🛒</a>
+      </div>
+
+      <button id="menuBtn" class="menu-btn" aria-label="Toggle Menu">☰</button>
+    </div>
+  </header>
+  <!-- Hero Section -->
+  <section class="hero-gradient text-white py-24 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-10 left-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+      <div class="absolute bottom-10 right-10 w-40 h-40 bg-white rounded-full blur-3xl"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div class="space-y-6">
+        <h1 class="text-5xl md:text-6xl font-bold leading-tight">
+          Design Your Own <span class="text-yellow-300">Custom T-Shirt</span>
+        </h1>
+        <p class="text-xl text-blue-100">
+          Upload your artwork, add text, choose colors, and get print-ready designs in minutes. No design experience
+          needed!
+        </p>
+        <div class="flex flex-col md:flex-row gap-4 pt-4">
+          <a href="design.html"
+            class="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-bold hover:bg-gray-100 transition">
+            Start Designing Now
+          </a>
+          <a href="#how"
+            class="inline-flex items-center justify-center px-8 py-4 bg-blue-500 text-white rounded-lg font-bold hover:bg-blue-400 transition border-2 border-white">
+            Watch Demo
+          </a>
+        </div>
+        <div class="flex gap-6 pt-4 text-sm">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">✓</span> Free Design Editor
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">✓</span> Fast Shipping
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">✓</span> Quality Prints
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl inline-block relative">
+          <div
+            class="w-64 h-80 bg-gradient-to-b from-blue-100 to-gray-100 rounded-xl flex items-center justify-center font-bold text-gray-400 text-6xl">
+            👕
+          </div>
+          <div
+            class="absolute -bottom-4 -right-4 bg-yellow-400 text-gray-900 px-6 py-2 rounded-full font-bold shadow-lg">
+            20% OFF
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Badges -->
+  <section class="bg-white py-8 border-b">
+    <div class="max-w-7xl mx-auto px-4">
+      <p class="text-center text-gray-600 text-sm mb-6">Trusted by thousands of customers</p>
+      <div class="grid md:grid-cols-5 gap-6 text-center">
+        <div>
+          <div class="text-3xl font-bold text-blue-600">10K+</div>
+          <div class="text-sm text-gray-600">Happy Customers</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-green-600">50K+</div>
+          <div class="text-sm text-gray-600">Designs Created</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-purple-600">100%</div>
+          <div class="text-sm text-gray-600">Satisfaction Rate</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-red-600">24/7</div>
+          <div class="text-sm text-gray-600">Customer Support</div>
+        </div>
+        <div>
+          <div class="text-3xl font-bold text-indigo-600">5★</div>
+          <div class="text-sm text-gray-600">Average Rating</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section id="features" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Powerful Features</h2>
+        <p class="text-lg text-gray-600">Everything you need to create amazing custom t-shirts</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+          <div class="feature-icon mb-4">🎨</div>
+          <h3 class="text-xl font-bold mb-3">Advanced Editor</h3>
+          <p class="text-gray-600">Drag-and-drop editor with layers, text effects, image uploads, and real-time mockup
+            preview.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+          <div class="feature-icon mb-4">🎯</div>
+          <h3 class="text-xl font-bold mb-3">Multiple Views</h3>
+          <p class="text-gray-600">Design for front, back, and sleeves. Toggle between views to see your complete
+            design.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+          <div class="feature-icon mb-4">🌈</div>
+          <h3 class="text-xl font-bold mb-3">Unlimited Colors</h3>
+          <p class="text-gray-600">Choose from any color in our palette. See live mockup updates as you customize.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+          <div class="feature-icon mb-4">💾</div>
+          <h3 class="text-xl font-bold mb-3">Save & Reuse</h3>
+          <p class="text-gray-600">Save your designs and reorder anytime. Modify saved designs or create variations.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+          <div class="feature-icon mb-4">📦</div>
+          <h3 class="text-xl font-bold mb-3">Fast Production</h3>
+          <p class="text-gray-600">Orders ship within 2-3 business days. Premium quality DTG and screen printing.</p>
+        </div>
+
+        <div class="bg-white p-8 rounded-xl shadow-md card-hover">
+          <div class="feature-icon mb-4">💳</div>
+          <h3 class="text-xl font-bold mb-3">Easy Payment</h3>
+          <p class="text-gray-600">BKash, Nagad, Rocket, Stripe, and PayPal. Secure checkout with order tracking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  </section>
+  <!-- End of Features -->
+
+  <!-- Product Section -->
+  <section id="products" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Our Best Products</h2>
+        <p class="text-lg text-gray-600">Premium quality t-shirts ready to customize & order</p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8">
+
+        <!-- Product 1 -->
+        <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
+          <img src="/public/Image/new (1).png" class="w-full h-56 object-cover rounded-lg mb-4">
+          <h3 class="font-bold text-lg mb-1">Black Premium Tee</h3>
+          <p class="text-gray-600 text-sm mb-3">Soft, high-quality cotton</p>
+          <a href="products.html"
+            class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">View
+            Details</a>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
+          <img src="/public/Image/new (2).png" class="w-full h-56 object-cover rounded-lg mb-4">
+          <h3 class="font-bold text-lg mb-1">White Classic Tee</h3>
+          <p class="text-gray-600 text-sm mb-3">Perfect for everyday wear</p>
+          <a href="products.html"
+            class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">View
+            Details</a>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
+          <img src="/public/Image/new (3).png" class="w-full h-56 object-cover rounded-lg mb-4">
+          <h3 class="font-bold text-lg mb-1">Sport Dry-Fit Tee</h3>
+          <p class="text-gray-600 text-sm mb-3">Breathable & lightweight</p>
+          <a href="products.html"
+            class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">View
+            Details</a>
+        </div>
+
+        <!-- Product 4 -->
+        <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
+          <img src="/public/Image/new (4).png" class="w-full h-56 object-cover rounded-lg mb-4">
+          <h3 class="font-bold text-lg mb-1">Premium V-Neck</h3>
+          <p class="text-gray-600 text-sm mb-3">Modern and stylish</p>
+          <a href="products.html"
+            class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">View
+            Details</a>
+        </div>
+
+        <!-- Product 5 -->
+        <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
+          <img src="/public/Image/new (14).png" class="w-full h-56 object-cover rounded-lg mb-4">
+          <h3 class="font-bold text-lg mb-1">Black Premium Tee</h3>
+          <p class="text-gray-600 text-sm mb-3">Soft, high-quality cotton</p>
+          <a href="products.html"
+            class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">View
+            Details</a>
+        </div>
+
+        <!-- Product 6 -->
+        <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
+          <img src="/public/Image/new (16).png" class="w-full h-56 object-cover rounded-lg mb-4">
+          <h3 class="font-bold text-lg mb-1">White Classic Tee</h3>
+          <p class="text-gray-600 text-sm mb-3">Perfect for everyday wear</p>
+          <a href="products.html"
+            class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">View
+            Details</a>
+        </div>
+
+        <!-- Product 7 -->
+        <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
+          <img src="/public/Image/new (17).png" class="w-full h-56 object-cover rounded-lg mb-4">
+          <h3 class="font-bold text-lg mb-1">Sport Dry-Fit Tee</h3>
+          <p class="text-gray-600 text-sm mb-3">Breathable & lightweight</p>
+          <a href="products.html"
+            class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">View
+            Details</a>
+        </div>
+
+        <!-- Product 8 -->
+        <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
+          <img src="/public/Image/new (8).png" class="w-full h-56 object-cover rounded-lg mb-4">
+          <h3 class="font-bold text-lg mb-1">Premium V-Neck</h3>
+          <p class="text-gray-600 text-sm mb-3">Modern and stylish</p>
+          <a href="products.html"
+            class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">View
+            Details</a>
+        </div>
+
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="products.html"
+          class="px-8 py-4 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition">
+          View All Products
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section (unchanged) -->
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">What Our Customers Say</h2>
+        <p class="text-lg text-gray-600">Real reviews from real customers</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="bg-gray-50 p-8 rounded-xl testimonial-card">
+          <div class="flex text-yellow-400 mb-4">★★★★★</div>
+          <p class="text-gray-700 mb-4">"Amazing quality! The editor is so easy to use and my t-shirt came out perfect.
+            Highly recommended for anyone wanting custom designs!"</p>
+          <div class="font-semibold">Ravi Kumar</div>
+          <div class="text-sm text-gray-600">Verified Purchase</div>
+        </div>
+
+        <div class="bg-gray-50 p-8 rounded-xl testimonial-card">
+          <div class="flex text-yellow-400 mb-4">★★★★★</div>
+          <p class="text-gray-700 mb-4">"Fast shipping and perfect prints. The color accuracy is incredible and the fit
+            is perfect. Will definitely order again!"</p>
+          <div class="font-semibold">Priya Sharma</div>
+          <div class="text-sm text-gray-600">Verified Purchase</div>
+        </div>
+
+        <div class="bg-gray-50 p-8 rounded-xl testimonial-card">
+          <div class="flex text-yellow-400 mb-4">★★★★★</div>
+          <p class="text-gray-700 mb-4">"Great customer service and affordable pricing. They even helped me fix my
+            design before printing. Best custom t-shirt service!"</p>
+          <div class="font-semibold">Ahmed Hassan</div>
+          <div class="text-sm text-gray-600">Verified Purchase</div>
+        </div>
+
+        <div class="bg-gray-50 p-8 rounded-xl testimonial-card">
+          <div class="flex text-yellow-400 mb-4">★★★★★</div>
+          <p class="text-gray-700 mb-4">"Ordered 20 shirts for our sports team. The bulk discount saved us so much money
+            and the quality is top-notch. Highly satisfied!"</p>
+          <div class="font-semibold">Sports Club Manager</div>
+          <div class="text-sm text-gray-600">Verified Purchase</div>
+        </div>
+
+        <div class="bg-gray-50 p-8 rounded-xl testimonial-card">
+          <div class="flex text-yellow-400 mb-4">★★★★★</div>
+          <p class="text-gray-700 mb-4">"The designer tool is incredible! I was able to create a professional-looking
+            design without any experience. Love it!"</p>
+          <div class="font-semibold">Design Enthusiast</div>
+          <div class="text-sm text-gray-600">Verified Purchase</div>
+        </div>
+
+        <div class="bg-gray-50 p-8 rounded-xl testimonial-card">
+          <div class="flex text-yellow-400 mb-4">★★★★★</div>
+          <p class="text-gray-700 mb-4">"Best experience ever! Quick turnaround, excellent quality, and responsive
+            support team. Definitely my go-to for custom shirts!"</p>
+          <div class="font-semibold">Satisfied Customer</div>
+          <div class="text-sm text-gray-600">Verified Purchase</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+        <p class="text-lg text-gray-600">Have questions? We've got answers</p>
+      </div>
+
+      <div class="space-y-4">
+        <details class="bg-white p-6 rounded-lg shadow cursor-pointer group">
+          <summary class="font-semibold text-lg flex justify-between items-center">
+            What file formats do you accept for uploads?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-700">We accept PNG, JPG, GIF, and SVG files. The maximum file size is 10MB. For best
+            results, use high-resolution images (300 DPI or higher).</p>
+        </details>
+
+        <details class="bg-white p-6 rounded-lg shadow cursor-pointer group">
+          <summary class="font-semibold text-lg flex justify-between items-center">
+            How long does shipping take?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-700">Dhaka: 1-2 business days | Outside Dhaka: 3-5 business days | International:
+            7-14 business days. Orders are processed within 24 hours and then shipped.</p>
+        </details>
+
+        <details class="bg-white p-6 rounded-lg shadow cursor-pointer group">
+          <summary class="font-semibold text-lg flex justify-between items-center">
+            Can I edit my order after placing it?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-700">Yes! You can edit your order within 24 hours of placing it. After that, the
+            order goes to production. Contact our support team for any changes.</p>
+        </details>
+
+        <details class="bg-white p-6 rounded-lg shadow cursor-pointer group">
+          <summary class="font-semibold text-lg flex justify-between items-center">
+            What payment methods do you accept?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-700">We accept BKash, Nagad, Rocket (mobile money), Stripe, and PayPal. All payments
+            are secure and encrypted.</p>
+        </details>
+
+        <details class="bg-white p-6 rounded-lg shadow cursor-pointer group">
+          <summary class="font-semibold text-lg flex justify-between items-center">
+            Do you offer bulk discounts?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-700">Yes! Orders of 10+ units get 20% off, 25+ units get 30% off, and 50+ units get
+            40% off. Contact our sales team for custom bulk orders.</p>
+        </details>
+
+        <details class="bg-white p-6 rounded-lg shadow cursor-pointer group">
+          <summary class="font-semibold text-lg flex justify-between items-center">
+            What's your return/refund policy?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-700">We offer 100% satisfaction guarantee. If you're not happy with your order, we'll
+            remake it or provide a full refund within 30 days.</p>
+        </details>
+
+        <details class="bg-white p-6 rounded-lg shadow cursor-pointer group">
+          <summary class="font-semibold text-lg flex justify-between items-center">
+            Can I save my designs?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-700">Absolutely! Create an account to save all your designs. You can access, edit,
+            and reorder them anytime from your profile.</p>
+        </details>
+
+        <details class="bg-white p-6 rounded-lg shadow cursor-pointer group">
+          <summary class="font-semibold text-lg flex justify-between items-center">
+            Do you use environmentally friendly methods?
+            <span class="group-open:rotate-180 transition">▼</span>
+          </summary>
+          <p class="mt-4 text-gray-700">Yes! We use DTG (Direct-to-Garment) printing which is eco-friendly and produces
+            minimal waste. We're committed to sustainable practices.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-4xl font-bold mb-4">Ready to Create Your Custom T-Shirt?</h2>
+      <p class="text-xl mb-8 text-blue-100">Join thousands of happy customers. Start designing now!</p>
+      <div class="flex flex-col md:flex-row gap-4 justify-center">
+        <a href="products.html"
+          class="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-bold hover:bg-gray-100 transition">
+          Design Now
+        </a>
+        <a href="#how"
+          class="inline-flex items-center justify-center px-8 py-4 border-2 border-white text-white rounded-lg font-bold hover:bg-blue-700 transition">
+          Learn More
+        </a>
+      </div>
+      <p class="text-blue-100 text-sm mt-6">No credit card required • Free design editor • 24/7 support</p>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="py-16 bg-white border-t">
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-12 rounded-2xl text-center">
+        <h3 class="text-2xl font-bold mb-2">Stay Updated</h3>
+        <p class="text-gray-600 mb-6">Get exclusive offers, design tips, and new product launches delivered to your
+          inbox.</p>
+        <form id="newsletterForm" class="flex gap-2 mb-4">
+          <input type="email" name="email" placeholder="Enter your email"
+            class="flex-1 px-4 py-3 border rounded-lg focus:outline-none focus:border-blue-600" required />
+          <button type="submit"
+            class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
+            Subscribe
+          </button>
+        </form>
+        <p class="text-xs text-gray-500">We respect your privacy. Unsubscribe anytime.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-5 gap-8 mb-8">
+        <div>
+          <a href="index.html" class="flex items-center">
+            <img src="/public/Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+          </a>
+          <p class="text-gray-400 text-sm">Custom t-shirt design and premium printing platform serving Bangladesh.</p>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Product</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/public/products.html" class="hover:text-white transition">Shop</a></li>
+            <li><a href="/public/about.html" class="hover:text-white transition">About</a></li>
+            <li><a href="/public/profile.html" class="hover:text-white transition">My Account</a></li>
+            <li><a href="/public/cart.html" class="hover:text-white transition">Cart</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#how" class="hover:text-white transition">How It Works</a></li>
+            <li><a href="/public/contact.html" class="hover:text-white transition">Contact</a></li>
+            <li><a href="#testimonials" class="hover:text-white transition">Reviews</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Support</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="/public/contact.html" class="hover:text-white transition">Terms of Service</a></li>
+            <li><a href="/public/contact.html" class="hover:text-white transition">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Connect</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center gap-2">📞 +880 1700-000000</li>
+            <li class="flex items-center gap-2">📧 support@bdfashion.com</li>
+            <li class="flex gap-3 pt-2">
+              <a href="#" class="hover:text-white transition text-xl" title="Facebook">f</a>
+              <a href="#" class="hover:text-white transition text-xl" title="Twitter">𝕏</a>
+              <a href="#" class="hover:text-white transition text-xl" title="Instagram">📷</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 pt-8 mt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+          <div>© 2024 BD Fashion. All rights reserved.</div>
+          <div class="flex gap-4 mt-4 md:mt-0">
+            <span class="text-xs">🔒 Secure Payment</span>
+            <span class="text-xs">✅ Verified</span>
+            <span class="text-xs">🚀 Fast Delivery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="js/index.js" defer></script>
+
+</body>
+
+</html>

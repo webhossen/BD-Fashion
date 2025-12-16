@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Order Status — BD Fashion</title>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+  <link rel="stylesheet" href="/public/CSS/styles.css">
+</head>
+
+<body class="bg-gray-50">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center">
+        <img src="/public/Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+      </a>
+
+      <nav id="main-nav">
+        <a href="index.html#features" class="nav-link">Features</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="cart.html" class="nav-link">Cart</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="login.html"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition">Login</a>
+        <a href="product.html"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition">Shop</a>
+        <a href="design.html"
+          class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition hidden md:inline">Design</a>
+        <a href="cart.html" class="px-4 py-2 text-blue-600 hover:text-blue-800 transition text-2xl" title="Cart">🛒</a>
+      </div>
+
+      <button id="menuBtn" class="menu-btn" aria-label="Toggle Menu">☰</button>
+    </div>
+  </header>
+
+  <div class="max-w-2xl mx-auto p-6">
+    <div id="orderBox" class="bg-white rounded-lg shadow p-8">
+      <h1 class="text-2xl font-bold mb-6">Order Status</h1>
+      <div id="content"></div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-5 gap-8 mb-8">
+        <div>
+          <a href="index.html" class="flex items-center">
+            <img src="/public/Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+          </a>
+          <p class="text-gray-400 text-sm">Custom t-shirt design and premium printing platform serving Bangladesh.</p>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Product</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/public/products.html" class="hover:text-white transition">Shop</a></li>
+            <li><a href="/public/about.html" class="hover:text-white transition">About</a></li>
+            <li><a href="/public/profile.html" class="hover:text-white transition">My Account</a></li>
+            <li><a href="/public/cart.html" class="hover:text-white transition">Cart</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#how" class="hover:text-white transition">How It Works</a></li>
+            <li><a href="/public/contact.html" class="hover:text-white transition">Contact</a></li>
+            <li><a href="#testimonials" class="hover:text-white transition">Reviews</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Support</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="/public/contact.html" class="hover:text-white transition">Terms of Service</a></li>
+            <li><a href="/public/contact.html" class="hover:text-white transition">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Connect</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center gap-2">📞 +880 1700-000000</li>
+            <li class="flex items-center gap-2">📧 support@bdfashion.com</li>
+            <li class="flex gap-3 pt-2">
+              <a href="#" class="hover:text-white transition text-xl" title="Facebook">f</a>
+              <a href="#" class="hover:text-white transition text-xl" title="Twitter">𝕏</a>
+              <a href="#" class="hover:text-white transition text-xl" title="Instagram">📷</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 pt-8 mt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+          <div>© 2024 BD Fashion. All rights reserved.</div>
+          <div class="flex gap-4 mt-4 md:mt-0">
+            <span class="text-xs">🔒 Secure Payment</span>
+            <span class="text-xs">✅ Verified</span>
+            <span class="text-xs">🚀 Fast Delivery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/order.js" defer></script>
+
+  <script src="js/header.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout — BD Fashion</title>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center">
+        <img src="/public/Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+      </a>
+
+      <nav id="main-nav">
+        <a href="index.html#features" class="nav-link">Features</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="cart.html" class="nav-link">Cart</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <a href="login.html"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition">Login</a>
+        <a href="product.html"
+          class="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition">Shop</a>
+        <a href="design.html"
+          class="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition hidden md:inline">Design</a>
+        <a href="cart.html" class="px-4 py-2 text-blue-600 hover:text-blue-800 transition text-2xl" title="Cart">🛒</a>
+      </div>
+
+      <button id="menuBtn" class="menu-btn" aria-label="Toggle Menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Checkout Container -->
+  <div class="max-w-6xl mx-auto p-4 md:p-8 grid md:grid-cols-3 gap-8">
+    <!-- Form -->
+    <div class="md:col-span-2 space-y-6">
+      <!-- Shipping Address -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-2xl font-bold mb-6">📍 Shipping Address</h3>
+        <form id="shippingForm" class="space-y-4">
+          <div>
+            <label class="block text-sm font-semibold mb-2">Full Name *</label>
+            <input type="text" name="name" placeholder="Your full name" required
+              class="w-full border-2 border-gray-200 rounded-lg p-3 focus:border-blue-500 focus:outline-none transition" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2">Email *</label>
+            <input type="email" name="email" placeholder="your@email.com" required
+              class="w-full border-2 border-gray-200 rounded-lg p-3 focus:border-blue-500 focus:outline-none transition" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2">Address *</label>
+            <textarea name="address" placeholder="Street address, city, area" required rows="3"
+              class="w-full border-2 border-gray-200 rounded-lg p-3 focus:border-blue-500 focus:outline-none transition resize-none"></textarea>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2">Phone Number *</label>
+            <input type="tel" name="phone" placeholder="+880 1700-000000" required
+              class="w-full border-2 border-gray-200 rounded-lg p-3 focus:border-blue-500 focus:outline-none transition" />
+          </div>
+        </form>
+      </div>
+
+      <!-- Payment Method -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-2xl font-bold mb-6">💳 Payment Method</h3>
+        <div class="space-y-3">
+          <label
+            class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+            <input type="radio" name="paymentMethod" value="manual" checked class="paymentRadio" />
+            <span class="ml-3 font-medium">Manual Payment (BKash/Nagad/Rocket)</span>
+          </label>
+          <label
+            class="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:bg-blue-50 transition">
+            <input type="radio" name="paymentMethod" value="stripe" class="paymentRadio" />
+            <span class="ml-3 font-medium">Card Payment (Stripe)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Manual Payment Details -->
+      <div id="manualPaymentDiv"
+        class="bg-gradient-to-r from-amber-50 to-orange-50 rounded-lg border-2 border-amber-200 p-6">
+        <h3 class="text-xl font-bold mb-4">📱 Payment Instructions</h3>
+        <div class="space-y-4 text-sm">
+          <div class="bg-white p-3 rounded">
+            <strong class="text-blue-600">BKash:</strong> Send to <span
+              class="font-mono bg-gray-100 px-2 py-1 rounded">01700-00-00-00</span>
+          </div>
+          <div class="bg-white p-3 rounded">
+            <strong class="text-blue-600">Nagad:</strong> Send to <span
+              class="font-mono bg-gray-100 px-2 py-1 rounded">01700-00-00-00</span>
+          </div>
+          <div class="bg-white p-3 rounded">
+            <strong class="text-blue-600">Rocket:</strong> Send to <span
+              class="font-mono bg-gray-100 px-2 py-1 rounded">01700-00-00-00</span>
+          </div>
+          <div class="bg-white p-3 rounded border-t-2 border-amber-200 mt-4 pt-4">
+            <label class="block text-sm font-semibold mb-2">Transaction ID</label>
+            <input id="transactionId" type="text" placeholder="Enter your transaction ID"
+              class="w-full border-2 border-gray-200 rounded-lg p-2 text-sm focus:border-blue-500 focus:outline-none transition" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Sidebar -->
+    <div class="md:col-span-1">
+      <div class="bg-white rounded-lg shadow p-6 sticky top-24">
+        <h3 class="text-2xl font-bold mb-6">📋 Order Summary</h3>
+
+        <div class="space-y-3 mb-6 pb-6 border-b-2">
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Subtotal:</span>
+            <strong>$<span id="summarySubtotal">0.00</span></strong>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Shipping:</span>
+            <strong class="text-green-600">Free</strong>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Tax (5%):</span>
+            <strong>$<span id="summaryTax">0.00</span></strong>
+          </div>
+          <div class="flex justify-between text-lg font-bold pt-3 border-t">
+            <span>Total:</span>
+            <span class="text-blue-600">$<span id="summaryTotal">0.00</span></span>
+          </div>
+        </div>
+
+        <!-- Place Order Button -->
+        <button id="placeOrderBtn" type="button"
+          class="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 rounded-lg font-bold hover:shadow-lg transition mb-3">
+          ✓ Place Order
+        </button>
+
+        <!-- Message -->
+        <div id="checkoutMsg" class="p-3 rounded-lg text-sm hidden text-center font-medium"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-5 gap-8 mb-8">
+        <div>
+          <a href="index.html" class="flex items-center">
+            <img src="/public/Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+          </a>
+          <p class="text-gray-400 text-sm">Custom t-shirt design and premium printing platform serving Bangladesh.</p>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Product</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="/public/products.html" class="hover:text-white transition">Shop</a></li>
+            <li><a href="/public/about.html" class="hover:text-white transition">About</a></li>
+            <li><a href="/public/profile.html" class="hover:text-white transition">My Account</a></li>
+            <li><a href="/public/cart.html" class="hover:text-white transition">Cart</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#how" class="hover:text-white transition">How It Works</a></li>
+            <li><a href="/public/contact.html" class="hover:text-white transition">Contact</a></li>
+            <li><a href="#testimonials" class="hover:text-white transition">Reviews</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Support</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="/public/contact.html" class="hover:text-white transition">Terms of Service</a></li>
+            <li><a href="/public/contact.html" class="hover:text-white transition">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Connect</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center gap-2">📞 +880 1700-000000</li>
+            <li class="flex items-center gap-2">📧 support@bdfashion.com</li>
+            <li class="flex gap-3 pt-2">
+              <a href="#" class="hover:text-white transition text-xl" title="Facebook">f</a>
+              <a href="#" class="hover:text-white transition text-xl" title="Twitter">𝕏</a>
+              <a href="#" class="hover:text-white transition text-xl" title="Instagram">📷</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-800 pt-8 mt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+          <div>© 2024 BD Fashion. All rights reserved.</div>
+          <div class="flex gap-4 mt-4 md:mt-0">
+            <span class="text-xs">🔒 Secure Payment</span>
+            <span class="text-xs">✅ Verified</span>
+            <span class="text-xs">🚀 Fast Delivery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <script src="js/checkout.js" defer></script>
+
+  <script src="js/header.js" defer></script>
+</body>
+
+</html>
