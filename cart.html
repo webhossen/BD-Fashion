@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cart — BD Fashion</title>
+
+  <!-- Tailwind -->
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+
+  <!-- Your global styles -->
+  <link rel="stylesheet" href="CSS/styles.css">
+
+  <style>
+    .cart-item {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .cart-item:hover {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .qty-input {
+      width: 50px;
+      padding: 6px 8px;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      text-align: center;
+      font-weight: 600;
+    }
+  </style>
+</head>
+
+<body style="background:#ffffff;">
+
+  <!-- HEADER -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+
+      <a href="index.html" class="flex items-center">
+        <img src="Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+      </a>
+
+      <nav id="main-nav">
+        <a href="index.html#Home" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="order-view.html" class="nav-link">My Order</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <button id="profileBtn" class="profile-btn" aria-label="Profile Menu">
+            <img src="Image/user.png" alt="Unlimited Colors" class="h-6 w-6 mx-auto">
+          </button>
+          <div id="profileDropdown" class="dropdown hidden">
+            <a href="profile.html">Profile</a>
+            <a href="#">My Reviews</a>
+            <a href="#">Switch Account</a>
+            <a href="#" id="logoutBtn">Log Out</a>
+          </div>
+        </div>
+        <a href="cart.html" class="relative inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+          <span class="text-xl">🛒</span>
+          <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-2 py-0.5">0</span>
+        </a>
+        <button id="menuBtn" class="menu-btn" aria-label="Toggle Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- MAIN CART SECTION -->
+  <div class="max-w-6xl mx-auto p-4 md:p-6 grid md:grid-cols-3 gap-6">
+
+    <!-- CART ITEMS -->
+    <div class="md:col-span-2">
+
+      <h1 class="text-3xl font-bold mb-6">Shopping Cart</h1>
+
+      <div id="cartItems" class="space-y-3"></div>
+
+      <button id="clearCartBtn"
+        class="mt-6 px-4 py-2 bg-red-100 text-red-700 rounded-lg font-medium hover:bg-red-200 transition">
+        🗑️ Clear Cart
+      </button>
+
+      <a href="products.html"
+        class="mt-6 ml-4 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-medium hover:bg-blue-200 transition inline-block">
+        🛍️ Keep Shopping
+      </a>
+
+    </div>
+
+
+    <!-- ORDER SUMMARY -->
+    <div class="md:col-span-1">
+      <div class="bg-white rounded-lg shadow p-6 sticky top-20">
+
+        <h3 class="text-xl font-bold mb-6">Order Summary</h3>
+
+        <div class="space-y-3 mb-6 pb-6 border-b-2">
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Subtotal:</span>
+            <strong>৳<span id="subtotal">0.00</span></strong>
+          </div>
+
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Discount:</span>
+            <strong class="text-green-600">-৳<span id="discount">0.00</span></strong>
+          </div>
+
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Tax (5%):</span>
+            <strong>৳<span id="tax">0.00</span></strong>
+          </div>
+
+          <div class="flex justify-between text-lg font-bold">
+            <span>Total:</span>
+            <span class="text-blue-600">৳<span id="total">0.00</span></span>
+          </div>
+        </div>
+
+        <!-- CHECKOUT -->
+        <a href="checkout.html" id="checkoutBtn"
+          class="w-full block bg-gradient-to-r from-green-600 to-green-700 text-white py-3 rounded-lg font-bold text-center hover:shadow-lg transition mb-3"
+          style="display: none;">
+          💳 Proceed to Checkout
+        </a>
+
+        <div id="emptyMsg" class="text-center text-gray-500 py-8">
+          <div class="text-4xl mb-2">🛒</div>
+          <p>Cart is empty</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-5 gap-8 mb-8">
+        <div>
+          <a href="index.html" class="flex items-center">
+            <img src="Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+          </a>
+          <p class="text-gray-400 text-sm">Custom t-shirt design and premium printing platform serving Bangladesh.</p>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Product</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="products.html" class="hover:text-white transition">Shop</a></li>
+            <li><a href="about.html" class="hover:text-white transition">About</a></li>
+            <li><a href="cart.html" class="hover:text-white transition">Cart</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#how" class="hover:text-white transition">How It Works</a></li>
+            <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+            <li><a href="#testimonials" class="hover:text-white transition">Reviews</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Support</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="contact.html" class="hover:text-white transition">Terms of Service</a></li>
+            <li><a href="contact.html" class="hover:text-white transition">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Connect</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center gap-2"><img src="Image/phone.png" alt="Phone" class="h-6 w-6">+880 1980-764507</li>
+            <li class="flex items-center gap-2"><img src="Image/gmail.png" alt="Email" class="h-6 w-6">support@bdfashion.com</li>
+            <li class="flex gap-3 pt-2">
+              <a href="https://github.com/webhossen" title="github icons"><img src="Image/github.png" alt="GitHub" class="h-6 w-6"></a>
+              <a href="https://www.facebook.com/Md.Anayet.Hossen.2003" class="hover:text-white transition text-xl" title="Facebook"><img src="Image/facebook.png" alt="Facebook" class="h-6 w-6"></a>
+              <a href="https://www.instagram.com/md_anayethossen/" class="hover:text-white transition text-xl" title="Instagram"><img src="Image/instagram.png" alt="Instagram" class="h-6 w-6"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+
+      <div class="border-t border-gray-800 pt-8 mt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+          <div>© 2024 BD Fashion. All rights reserved.</div>
+          <div class="flex gap-4 mt-4 md:mt-0">
+            <span class="text-xs">🔒 Secure Payment</span>
+            <span class="text-xs">✅ Verified</span>
+            <span class="text-xs">🚀 Fast Delivery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <!-- <script>
+    if (!localStorage.getItem("token")) {
+      window.location.href = "login.html";
+    }
+  </script> -->
+
+  <script src="js/auth.js" defer></script>
+  <script src="js/products.js" defer></script>
+  <script src="js/cart.js" defer></script>
+  <script src="js/header.js" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Profile dropdown toggle
+      const profileBtn = document.getElementById('profileBtn');
+      const profileDropdown = document.getElementById('profileDropdown');
+
+      profileBtn.addEventListener('click', function() {
+        profileDropdown.classList.toggle('hidden');
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!profileBtn.contains(event.target) && !profileDropdown.contains(event.target)) {
+          profileDropdown.classList.add('hidden');
+        }
+      });
+
+      // Logout functionality
+      const logoutBtn = document.getElementById('logoutBtn');
+      logoutBtn.addEventListener('click', function() {
+        localStorage.removeItem('demo_session');
+        location.reload();
+      });
+    });
+  </script>
+
+</body>
+
+</html>

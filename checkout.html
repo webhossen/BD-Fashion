@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout — BD Fashion</title>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+  <link rel="stylesheet" href="CSS/styles.css">
+</head>
+
+<body style="background:#ffffff;">
+  <!-- Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="index.html" class="flex items-center">
+        <img src="Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+      </a>
+
+      <nav id="main-nav">
+        <a href="index.html#Home" class="nav-link">Home</a>
+        <a href="products.html" class="nav-link">Products</a>
+        <a href="about.html" class="nav-link active">About</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="order-view.html" class="nav-link">My Order</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <div class="relative">
+          <button id="profileBtn" class="profile-btn" aria-label="Profile Menu">
+            <img src="Image/user.png" alt="Unlimited Colors" class="h-6 w-6 mx-auto">
+          </button>
+          <div id="profileDropdown" class="dropdown hidden">
+            <a href="profile.html">Profile</a>
+            <a href="#">My Reviews</a>
+            <a href="#">Switch Account</a>
+            <a href="#" id="logoutBtn">Log Out</a>
+          </div>
+        </div>
+        <a href="cart.html" class="relative inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+          <span class="text-xl">🛒</span>
+          <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-2 py-0.5">0</span>
+        </a>
+        <button id="menuBtn" class="menu-btn" aria-label="Toggle Menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Checkout Container -->
+  <div class="max-w-6xl mx-auto p-4 md:p-8 grid md:grid-cols-3 gap-8">
+    <!-- Form -->
+    <div class="md:col-span-2 space-y-6">
+      <!-- Shipping Address -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-2xl font-bold mb-6">📍 Shipping Address</h3>
+        <form id="shippingForm" class="space-y-4">
+          <div>
+            <label class="block text-sm font-semibold mb-2">Full Name *</label>
+            <input type="text" name="name" placeholder="Your full name" required
+              class="w-full border-2 border-gray-200 rounded-lg p-3 focus:border-blue-500 focus:outline-none transition" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2">Email *</label>
+            <input type="email" name="email" placeholder="your@email.com" required
+              class="w-full border-2 border-gray-200 rounded-lg p-3 focus:border-blue-500 focus:outline-none transition" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2">Address *</label>
+            <textarea name="address" placeholder="Street address, city, area" required rows="3"
+              class="w-full border-2 border-gray-200 rounded-lg p-3 focus:border-blue-500 focus:outline-none transition resize-none"></textarea>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2">Phone Number *</label>
+            <input type="tel" name="phone" placeholder="+880 1700-000000" required
+              class="w-full border-2 border-gray-200 rounded-lg p-3 focus:border-blue-500 focus:outline-none transition" />
+          </div>
+        </form>
+      </div>
+
+      <!-- Payment Method -->
+      <div class="bg-white rounded-lg shadow p-6">
+        <h3 class="text-2xl font-bold mb-6">💳 Payment Method</h3>
+        
+        <!-- Payment Cards Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+          <!-- Credit Card -->
+          <label class="paymentOption relative cursor-pointer">
+            <input type="radio" name="paymentMethod" value="credit_card" class="paymentRadio hidden" />
+            <div class="payment-card p-4 border-2 border-gray-200 rounded-lg text-center hover:border-blue-500 hover:shadow-lg transition">
+              <div class="text-4xl mb-2">💳</div>
+              <div class="font-semibold text-sm">Credit Card</div>
+              <div class="text-xs text-gray-500 mt-1">Visa, MC, Amex</div>
+            </div>
+          </label>
+
+          <!-- Debit Card -->
+          <label class="paymentOption relative cursor-pointer">
+            <input type="radio" name="paymentMethod" value="debit_card" class="paymentRadio hidden" />
+            <div class="payment-card p-4 border-2 border-gray-200 rounded-lg text-center hover:border-blue-500 hover:shadow-lg transition">
+              <div class="text-4xl mb-2">🏦</div>
+              <div class="font-semibold text-sm">Debit Card</div>
+              <div class="text-xs text-gray-500 mt-1">Your bank card</div>
+            </div>
+          </label>
+
+          <!-- Mastercard -->
+          <label class="paymentOption relative cursor-pointer">
+            <input type="radio" name="paymentMethod" value="mastercard" class="paymentRadio hidden" />
+            <div class="payment-card p-4 border-2 border-gray-200 rounded-lg text-center hover:border-blue-500 hover:shadow-lg transition">
+              <div class="mb-2">
+                <svg class="w-8 h-8 mx-auto" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="48" height="48" rx="8" fill="#EB001B"/>
+                  <circle cx="16" cy="24" r="12" fill="#FF5F00"/>
+                  <circle cx="32" cy="24" r="12" fill="#EB001B"/>
+                  <path d="M28 18V30M20 18V30" stroke="#FF5F00" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="font-semibold text-sm">Mastercard</div>
+              <div class="text-xs text-gray-500 mt-1">Worldwide</div>
+            </div>
+          </label>
+
+          <!-- Visa Card -->
+          <label class="paymentOption relative cursor-pointer">
+            <input type="radio" name="paymentMethod" value="visa" class="paymentRadio hidden" />
+            <div class="payment-card p-4 border-2 border-gray-200 rounded-lg text-center hover:border-blue-500 hover:shadow-lg transition">
+              <div class="mb-2">
+                <svg class="w-8 h-8 mx-auto" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="48" height="48" rx="8" fill="#1434CB"/>
+                  <path d="M12 20L18 32H23L17 20H12Z" fill="white"/>
+                  <path d="M20 20L28 32H33L25 20H20Z" fill="white"/>
+                  <path d="M28 20L32 32H37L33 20H28Z" fill="#FFB81C"/>
+                </svg>
+              </div>
+              <div class="font-semibold text-sm">Visa</div>
+              <div class="text-xs text-gray-500 mt-1">Worldwide</div>
+            </div>
+          </label>
+
+          <!-- PayPal -->
+          <label class="paymentOption relative cursor-pointer">
+            <input type="radio" name="paymentMethod" value="paypal" class="paymentRadio hidden" />
+            <div class="payment-card p-4 border-2 border-gray-200 rounded-lg text-center hover:border-blue-500 hover:shadow-lg transition">
+              <div class="mb-2">
+                <svg class="w-8 h-8 mx-auto" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="48" height="48" rx="8" fill="#003087"/>
+                  <path d="M14 14H24C26.2 14 28 15.8 28 18C28 19.5 27 20.7 25.5 21C27 21.4 28 22.6 28 24C28 26.2 26.2 28 24 28H14L14 14Z" fill="white"/>
+                  <path d="M18 18H23C24.1 18 25 18.9 25 20C25 21.1 24.1 22 23 22H18V18Z" fill="#003087"/>
+                  <path d="M18 22H24C25.1 22 26 22.9 26 24C26 25.1 25.1 26 24 26H18V22Z" fill="#003087"/>
+                  <circle cx="32" cy="20" r="2" fill="white"/>
+                </svg>
+              </div>
+              <div class="font-semibold text-sm">PayPal</div>
+              <div class="text-xs text-gray-500 mt-1">Secure payment</div>
+            </div>
+          </label>
+
+          <!-- Cash on Delivery -->
+          <label class="paymentOption relative cursor-pointer">
+            <input type="radio" name="paymentMethod" value="cash_on_delivery" class="paymentRadio hidden" />
+            <div class="payment-card p-4 border-2 border-green-500 rounded-lg text-center hover:border-green-600 hover:shadow-lg transition bg-green-50">
+              <div class="text-4xl mb-2">💵</div>
+              <div class="font-semibold text-sm">Cash on Delivery</div>
+              <div class="text-xs text-gray-500 mt-1">Pay when you receive</div>
+            </div>
+          </label>
+        </div>
+
+        <!-- Mobile Banking Section -->
+        <div class="mt-6">
+          <h4 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
+            <span class="text-2xl">📱</span>
+            Mobile Banking
+          </h4>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- bKash -->
+            <label class="paymentOption relative cursor-pointer">
+              <input type="radio" name="paymentMethod" value="bkash" checked class="paymentRadio hidden" />
+              <div class="payment-card p-4 border-2 border-pink-500 rounded-lg text-center hover:border-pink-600 hover:shadow-lg transition bg-pink-50">
+                <div class="text-4xl mb-2">📱</div>
+                <div class="font-semibold text-sm">bKash</div>
+                <div class="text-xs text-gray-500 mt-1">Mobile Payment</div>
+              </div>
+            </label>
+
+            <!-- Nagad -->
+            <label class="paymentOption relative cursor-pointer">
+              <input type="radio" name="paymentMethod" value="nagad" class="paymentRadio hidden" />
+              <div class="payment-card p-4 border-2 border-orange-500 rounded-lg text-center hover:border-orange-600 hover:shadow-lg transition bg-orange-50">
+                <div class="text-4xl mb-2">📱</div>
+                <div class="font-semibold text-sm">Nagad</div>
+                <div class="text-xs text-gray-500 mt-1">Mobile Payment</div>
+              </div>
+            </label>
+
+            <!-- Rocket -->
+            <label class="paymentOption relative cursor-pointer">
+              <input type="radio" name="paymentMethod" value="rocket" class="paymentRadio hidden" />
+              <div class="payment-card p-4 border-2 border-red-500 rounded-lg text-center hover:border-red-600 hover:shadow-lg transition bg-red-50">
+                <div class="text-4xl mb-2">📱</div>
+                <div class="font-semibold text-sm">Rocket</div>
+                <div class="text-xs text-gray-500 mt-1">Mobile Payment</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Selected Payment Details -->
+        <div id="paymentDetails" class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+          <p class="text-sm text-gray-600"><strong>Selected:</strong> <span id="selectedPaymentText">bKash (Mobile Payment)</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Summary Sidebar -->
+    <div class="md:col-span-1">
+      <div class="bg-white rounded-lg shadow p-6 sticky top-24">
+        <h3 class="text-2xl font-bold mb-6">📋 Order Summary</h3>
+
+        <div id="orderItemsSummary" class="space-y-4 mb-6 pb-6 border-b-2">
+          <div class="text-sm text-gray-600">Items</div>
+          <div id="orderItemsDetails" class="space-y-4">
+            <!-- Order summary items will be populated here -->
+          </div>
+        </div>
+
+        <!-- Price Summary -->
+        <div class="space-y-3 mb-6 pb-6 border-b-2">
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Subtotal:</span>
+            <strong>৳<span id="summarySubtotal">0.00</span></strong>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Discount:</span>
+            <strong class="text-green-600">-৳<span id="summaryDiscount">0.00</span></strong>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Shipping:</span>
+            <strong class="text-green-600">Free</strong>
+          </div>
+          <div class="flex justify-between text-sm">
+            <span class="text-gray-600">Tax (5%):</span>
+            <strong>৳<span id="summaryTax">0.00</span></strong>
+          </div>
+          <div class="flex justify-between text-lg font-bold pt-3 border-t">
+            <span>Total:</span>
+            <span class="text-blue-600">৳<span id="summaryTotal">0.00</span></span>
+          </div>
+        </div>
+
+        <!-- COUPON -->
+        <div class="mb-6">
+          <label class="block text-sm font-semibold mb-2">Apply Coupon</label>
+
+          <div class="flex gap-2 items-center">
+            <input id="couponInput" type="text" placeholder="Code"
+              class="w-32 border rounded-lg p-2 text-sm focus:border-blue-500 focus:outline-none" />
+
+            <button id="applyCouponBtn"
+              class="px-3 py-2 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition text-sm">
+              Apply
+            </button>
+
+            <button id="cancelCouponBtn" style="display: none;"
+              class="px-3 py-2 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition text-sm">
+              ✕ Cancel
+            </button>
+          </div>
+
+          <div id="couponMsg" class="text-xs mt-2 min-h-4"></div>
+        </div>
+
+        <!-- Place Order Button -->
+        <button id="placeOrderBtn" type="button"
+          class="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 rounded-lg font-bold hover:shadow-lg transition mb-3">
+          ✓ Place Order
+        </button>
+
+        <!-- Message -->
+        <div id="checkoutMsg" class="p-3 rounded-lg text-sm hidden text-center font-medium"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-5 gap-8 mb-8">
+        <div>
+          <a href="index.html" class="flex items-center">
+            <img src="Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+          </a>
+          <p class="text-gray-400 text-sm">Custom t-shirt design and premium printing platform serving Bangladesh.</p>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Product</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="products.html" class="hover:text-white transition">Shop</a></li>
+            <li><a href="about.html" class="hover:text-white transition">About</a></li>
+            <li><a href="cart.html" class="hover:text-white transition">Cart</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Company</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#how" class="hover:text-white transition">How It Works</a></li>
+            <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+            <li><a href="#testimonials" class="hover:text-white transition">Reviews</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Support</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="contact.html" class="hover:text-white transition">Terms of Service</a></li>
+            <li><a href="contact.html" class="hover:text-white transition">Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-semibold mb-4">Connect</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center gap-2"><img src="Image/phone.png" alt="Phone" class="h-6 w-6">+880 1980-764507</li>
+            <li class="flex items-center gap-2"><img src="Image/gmail.png" alt="Email" class="h-6 w-6">support@bdfashion.com</li>
+            <li class="flex gap-3 pt-2">
+              <a href="https://github.com/webhossen" title="github icons"><img src="Image/github.png" alt="GitHub" class="h-6 w-6"></a>
+              <a href="https://www.facebook.com/Md.Anayet.Hossen.2003" class="hover:text-white transition text-xl" title="Facebook"><img src="Image/facebook.png" alt="Facebook" class="h-6 w-6"></a>
+              <a href="https://www.instagram.com/md_anayethossen/" class="hover:text-white transition text-xl" title="Instagram"><img src="Image/instagram.png" alt="Instagram" class="h-6 w-6"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      </div>
+
+      <div class="border-t border-gray-800 pt-8 mt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+          <div>© 2024 BD Fashion. All rights reserved.</div>
+          <div class="flex gap-4 mt-4 md:mt-0">
+            <span class="text-xs">🔒 Secure Payment</span>
+            <span class="text-xs">✅ Verified</span>
+            <span class="text-xs">🚀 Fast Delivery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <script src="https://sandbox.bkash.dev/static/js/checkout.js"></script>
+
+  <script src="js/auth.js" defer></script>
+  <script src="js/products.js" defer></script>
+  <script src="js/demo-payment-gateway.js" defer></script>
+  <script src="js/checkout.js" defer></script>
+
+  <script src="js/header.js" defer></script>
+  <script src="js/cart.js" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof updateCartCount === 'function') {
+        updateCartCount();
+      }
+
+      const profileBtn = document.getElementById('profileBtn');
+      const profileDropdown = document.getElementById('profileDropdown');
+      const logoutBtn = document.getElementById('logoutBtn');
+
+      if (profileBtn && profileDropdown) {
+        profileBtn.addEventListener('click', function(event) {
+          event.stopPropagation();
+          profileDropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function(event) {
+          if (!profileBtn.contains(event.target) && !profileDropdown.contains(event.target)) {
+            profileDropdown.classList.add('hidden');
+          }
+        });
+      }
+
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(event) {
+          event.preventDefault();
+          localStorage.removeItem('demo_session');
+          location.reload();
+        });
+      }
+    });
+  </script>
+
+</body>
+
+</html>

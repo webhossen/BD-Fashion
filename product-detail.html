@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Product Detail — BD Fashion</title>
+
+    <!-- Tailwind -->
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <link rel="stylesheet" href="CSS/products.css" />
+    <style>
+        /* Hover effect for Suggested Products */
+        #suggestedProducts .suggested-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #suggestedProducts .suggested-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+        }
+
+        /* Main product image zoom effect */
+        #mainImage {
+            transition: transform 0.35s ease;
+        }
+
+        #mainImage:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body style="background:#ffffff;">
+    <!-- HEADER -->
+    <header class="bg-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+            </a>
+
+            <nav id="main-nav">
+                <a href="index.html#Home" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="order-view.html" class="nav-link">My Order</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <button id="profileBtn" class="profile-btn" aria-label="Profile Menu">
+                      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                      </svg>
+                    </button>
+                    <div id="profileDropdown" class="dropdown hidden">
+                        <a href="profile.html">Profile</a>
+                        <a href="#">My Reviews</a>
+                        <a href="#">Switch Account</a>
+                        <a href="#" id="logoutBtn">Log Out</a>
+                    </div>
+                </div>
+                <a href="cart.html" class="relative inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+                    <span class="text-xl">🛒</span>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-2 py-0.5">0</span>
+                </a>
+                <button id="menuBtn" class="menu-btn" aria-label="Toggle Menu">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="py-12">
+        <div class="max-w-6xl mx-auto px-4">
+
+            <!-- PRODUCT ROOT -->
+            <div class="grid md:grid-cols-2 gap-10 bg-white p-8 rounded-xl shadow product-detail-container"
+                style="background:#ffffff; box-shadow: 0 12px 30px rgb(0, 0, 0);">
+
+                <!-- GALLERY -->
+                <div>
+                    <div class="w-full h-96 bg-gray-100 rounded-lg flex items-center justify-center overflow-hidden">
+                        <img id="mainImage" src="" alt="Product" class="object-contain max-h-96" />
+                    </div>
+
+                    <div id="imageGallery" class="flex gap-3 mt-4"></div>
+                    <!-- AUTO Product Details Section -->
+                    <div id="autoDetailsBox" class="mt-8 bg-white p-6 rounded-xl"
+                        style="box-shadow: 0 12px 30px rgb(184, 184, 184);">
+
+                        <h3 class="text-xl font-bold mb-4">Product Details</h3>
+
+                        <ul id="autoProductDetails" class="space-y-2 text-gray-700"></ul>
+
+                    </div>
+
+                </div>
+                <!-- DETAILS -->
+                <div>
+
+                    <h1 id="productTitle" class="text-3xl font-bold mb-3"></h1>
+
+                    <div id="productPrice" class="text-3xl text-blue-600 font-bold mb-4"></div>
+
+                    <p id="productDescription" class="text-gray-700 mb-6"></p>
+
+                    <div class="mb-5 mt-6">
+                        <label class="font-semibold text-sm mb-1 block">Size</label>
+                        <select id="selectSize" class="border px-4 py-2 rounded-lg">
+                            <option>S</option>
+                            <option>M</option>
+                            <option>L</option>
+                            <option>XL</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center gap-4 mb-8">
+                        <input type="number" id="qtyInput" value="1" min="1" class="border w-20 px-4 py-2 rounded-lg" />
+
+                        <button id="addToCartBtn"
+                            class="px-6 py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700">
+                            Add to Cart
+                        </button>
+
+                        <a href="order.html" id="designBtn" class="px-6 py-3 border rounded-lg hover:bg-gray-100">
+                            Order Now
+                        </a>
+                    </div>
+
+                    <div>
+                        <h3 class="font-bold text-xl mb-3">Suggested Products</h3>
+                        <div id="suggestedProducts"></div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- OVERALL RATING -->
+            <div id="ratingSection" class="my-10">
+                <h3 class="text-2xl font-bold mb-3">Overall Rating</h3>
+
+                <div class="flex items-center gap-2">
+                    <div id="ratingStars" class="text-yellow-400 text-2xl"></div>
+                    <span id="ratingValue" class="text-gray-700 font-medium"></span>
+                </div>
+
+                <div id="ratingCount" class="text-sm text-gray-500 mt-1"></div>
+            </div>
+
+            <!-- PRODUCT REVIEWS -->
+            <div id="reviewsSection" class="mt-12">
+                <h3 class="text-2xl font-bold mb-4">Ratings & Reviews</h3>
+
+                <!-- Review List -->
+                <div id="reviewsList" class="space-y-4 mb-8"></div>
+
+                <!-- ADD REVIEW FORM -->
+                <div class="bg-white p-5 border rounded-xl" style="box-shadow: 0 12px 30px rgb(0, 0, 0);">
+                    <h4 class="font-semibold mb-2">Write a Review</h4>
+
+                    <div class="flex gap-1 text-gray-300 text-2xl mb-3" id="selectStars">
+                        <span data-star="1">★</span>
+                        <span data-star="2">★</span>
+                        <span data-star="3">★</span>
+                        <span data-star="4">★</span>
+                        <span data-star="5">★</span>
+                    </div>
+
+                    <input id="reviewerName" type="text" placeholder="Your name" class="w-full border p-2 rounded mb-2">
+
+                    <textarea id="reviewText" placeholder="Write something..." class="w-full border p-2 rounded mb-2"
+                        rows="3"></textarea>
+
+                    <button id="submitReview" class="px-4 py-2 bg-blue-600 text-white rounded-lg">
+                        Submit Review
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="max-w-7xl mx-auto px-4">
+
+            <div class="grid md:grid-cols-5 gap-8 mb-8">
+
+                <div>
+                    <h4 class="text-lg font-bold mb-4 flex items-center gap-2">
+                        <img src="Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+                    </h4>
+                    <p class="text-gray-400 text-sm">Custom t-shirt design and premium printing platform serving
+                        Bangladesh.</p>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="products.html" class="hover:text-white transition">Shop</a></li>
+                        <li><a href="customize.html" class="hover:text-white transition">Design</a></li>
+                        <li><a href="#pricing" class="hover:text-white transition">Pricing</a></li>
+                        <li><a href="cart.html" class="hover:text-white transition">Cart</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#how" class="hover:text-white transition">How It Works</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#testimonials" class="hover:text-white transition">Reviews</a></li>
+                        <li><a href="admin.html" class="hover:text-white transition">For Business</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="contact.html" class="hover:text-white transition">Contact Support</a></li>
+                    </ul>
+                </div>
+
+                <div>
+          <h4 class="font-semibold mb-4">Connect</h4>
+          <ul class="space-y-2 text-sm text-gray-400">
+            <li class="flex items-center gap-2"><img src="Image/phone.png" alt="Phone" class="h-6 w-6">+880 1980-764507</li>
+            <li class="flex items-center gap-2"><img src="Image/gmail.png" alt="Email" class="h-6 w-6">support@bdfashion.com</li>
+            <li class="flex gap-3 pt-2">
+              <a href="https://github.com/webhossen" title="github icons"><img src="Image/github.png" alt="GitHub" class="h-6 w-6"></a>
+              <a href="https://www.facebook.com/Md.Anayet.Hossen.2003" class="hover:text-white transition text-xl" title="Facebook"><img src="Image/facebook.png" alt="Facebook" class="h-6 w-6"></a>
+              <a href="https://www.instagram.com/md_anayethossen/" class="hover:text-white transition text-xl" title="Instagram"><img src="Image/instagram.png" alt="Instagram" class="h-6 w-6"></a>
+            </li>
+          </ul>
+        </div>
+
+            </div>
+
+
+            <div class="border-t border-gray-800 pt-8 mt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
+                    <div>© 2024 BD Fashion. All rights reserved.</div>
+                    <div class="flex gap-4 mt-4 md:mt-0">
+                        <span class="text-xs">🔒 Secure Payment</span>
+                        <span class="text-xs">✅ Verified</span>
+                        <span class="text-xs">🚀 Fast Delivery</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/product-detail.js"></script>
+    <script src="js/cart.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+
+            // Profile dropdown toggle
+            const profileBtn = document.getElementById('profileBtn');
+            const profileDropdown = document.getElementById('profileDropdown');
+
+            profileBtn.addEventListener('click', function() {
+                profileDropdown.classList.toggle('hidden');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!profileBtn.contains(event.target) && !profileDropdown.contains(event.target)) {
+                    profileDropdown.classList.add('hidden');
+                }
+            });
+
+            // Logout functionality
+            const logoutBtn = document.getElementById('logoutBtn');
+            logoutBtn.addEventListener('click', function() {
+                localStorage.removeItem('demo_session');
+                location.reload();
+            });
+        });
+    </script>
+
+</body>
+
+</html>

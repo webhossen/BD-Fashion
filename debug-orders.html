@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Check Orders</title>
+    <script src="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"></script>
+    <link rel="stylesheet" href="CSS/styles.css">
+</head>
+<body>
+
+    <!-- Header/Navbar -->
+    <header class="bg-white shadow sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex items-center">
+                <img src="Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
+            </a>
+
+            <nav id="main-nav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="products.html" class="nav-link">Products</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="order-view.html" class="nav-link">My Order</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <div class="relative">
+                    <button id="profileBtn" class="profile-btn" aria-label="Profile Menu">👤</button>
+                    <div id="profileDropdown" class="dropdown hidden">
+                        <a href="profile.html">Profile</a>
+                        <a href="#">My Reviews</a>
+                        <a href="#">Switch Account</a>
+                        <a href="#" id="logoutBtn">Log Out</a>
+                    </div>
+                </div>
+                <a href="cart.html" class="relative inline-flex items-center justify-center w-10 h-10 bg-gray-100 rounded-full hover:bg-gray-200 transition">
+                    <span class="text-xl">🛒</span>
+                    <span id="cart-count" class="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full px-2 py-0.5">0</span>
+                </a>
+                <button id="menuBtn" class="menu-btn" aria-label="Toggle Menu">☰</button>
+            </div>
+        </div>
+    </header>
+
+    <h1>Order Debug</h1>
+    <div id="output"></div>
+
+    <script src="js/cart.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+
+        const ORDERS_KEY = 'bd_orders';
+        const orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
+
+        const output = document.getElementById('output');
+        output.innerHTML = `
+            <h2>Found ${orders.length} orders:</h2>
+            <pre>${JSON.stringify(orders, null, 2)}</pre>
+        `;
+
+        if (orders.length === 0) {
+            output.innerHTML += '<p>No orders found. Try placing an order first.</p>';
+        }
+    </script>
+</body>
+</html>
