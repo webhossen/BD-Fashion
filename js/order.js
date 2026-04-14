@@ -411,10 +411,11 @@ class BKashPaymentHandler {
 const bkashHandler = new BKashPaymentHandler();
 
   document.getElementById('placeOrderBtn').addEventListener('click', async () => {
-    const token = localStorage.getItem('auth_token');
-    if (!token) {
-      alert('Please confirm your order');
-      return location.href = '#';
+    const session = localStorage.getItem('demo_session');
+    if (!session) {
+      alert('Please log in before placing your order.');
+      const target = encodeURIComponent(window.location.href);
+      return window.location.href = `login.html?redirect=${target}`;
     }
 
     const shipping = {

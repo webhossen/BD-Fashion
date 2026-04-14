@@ -3,7 +3,27 @@ class DemoAuth {
     constructor() {
         this.users = this.loadUsers();
         this.currentUser = null;
+        this.redirectUrl = this.getRedirectUrl();
         this.init();
+    }
+
+    getRedirectUrl() {
+        const params = new URLSearchParams(window.location.search);
+        const redirectParam = params.get('redirect');
+        if (!redirectParam) {
+            return 'index.html';
+        }
+
+        try {
+            const url = new URL(redirectParam, window.location.origin);
+            if (url.origin === window.location.origin) {
+                return url.href;
+            }
+        } catch (error) {
+            // Ignore invalid redirect values
+        }
+
+        return 'index.html';
     }
 
     // Initialize the demo auth system
@@ -17,16 +37,22 @@ class DemoAuth {
     // Load demo users from localStorage
     loadUsers() {
         const users = localStorage.getItem('demo_users');
-        return users ? JSON.parse(users) : [
+        const parsedUsers = users ? JSON.parse(users) : [
             {
                 id: 1,
-                name: 'Demo User',
-                email: 'demo@bd-fashion.com',
-                phone: '+8801700000000',
-                password: 'demo123',
+                name: 'Admin User',
+                email: 'admin@bd-fashion.com',
+                phone: '+8801700000001',
+                password: 'admin123',
+                role: 'admin',
                 createdAt: new Date().toISOString()
             }
         ];
+
+        return parsedUsers.map(user => ({
+            ...user,
+            role: user.role || 'customer'
+        }));
     }
 
     // Save users to localStorage
@@ -34,14 +60,24 @@ class DemoAuth {
         localStorage.setItem('demo_users', JSON.stringify(this.users));
     }
 
+    generateToken() {
+        return Math.random().toString(36).slice(2) + Date.now().toString(36);
+    }
+
     // Check for existing session
     checkExistingSession() {
         const session = localStorage.getItem('demo_session');
         if (session) {
             this.currentUser = JSON.parse(session);
+            if (!localStorage.getItem('auth_token')) {
+                localStorage.setItem('auth_token', this.generateToken());
+            }
+            if (!localStorage.getItem('user')) {
+                localStorage.setItem('user', JSON.stringify(this.currentUser));
+            }
             this.showWelcomeMessage();
             setTimeout(() => {
-                window.location.href = 'index.html';
+                window.location.href = this.redirectUrl;
             }, 2000);
         }
     }
@@ -121,12 +157,14 @@ class DemoAuth {
             // Success - create session
             this.currentUser = user;
             localStorage.setItem('demo_session', JSON.stringify(user));
+            localStorage.setItem('auth_token', this.generateToken());
+            localStorage.setItem('user', JSON.stringify(user));
 
             this.showSuccess(form, 'Login successful! Redirecting...');
 
             // Redirect after delay
             setTimeout(() => {
-                window.location.href = 'index.html';
+                window.location.href = this.redirectUrl;
             }, 1500);
 
         } catch (error) {
@@ -191,6 +229,7 @@ class DemoAuth {
                 email: email.toLowerCase(),
                 phone: phone,
                 password: password,
+                role: 'customer',
                 createdAt: new Date().toISOString()
             };
 
@@ -200,12 +239,14 @@ class DemoAuth {
             // Auto login
             this.currentUser = newUser;
             localStorage.setItem('demo_session', JSON.stringify(newUser));
+            localStorage.setItem('auth_token', this.generateToken());
+            localStorage.setItem('user', JSON.stringify(newUser));
 
             this.showSuccess(form, 'Account created successfully! Signing you in...');
 
             // Redirect after delay
             setTimeout(() => {
-                window.location.href = 'index.html';
+                window.location.href = this.redirectUrl;
             }, 1500);
 
         } catch (error) {

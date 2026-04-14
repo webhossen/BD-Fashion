@@ -18,16 +18,72 @@
     }
 
     .product-card img {
-      transition: transform 0.35s ease;
+      transition: none;
     }
 
     .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     }
 
     .product-card:hover img {
-      transform: scale(1.05);
+      transform: none;
+    }
+
+    /* Lazy loading placeholder */
+    .lazy-image {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Pagination Styles */
+    .pagination-btn {
+      min-width: 40px;
+      transition: all 0.2s ease;
+    }
+
+    .pagination-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Go to Top Button */
+    #goToTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    #goToTopBtn:hover {
+      background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    #goToTopBtn.show {
+      opacity: 1;
+      visibility: visible;
     }
   </style>
 </head>
@@ -56,8 +112,7 @@
           </button>
           <div id="profileDropdown" class="dropdown hidden">
             <a href="profile.html">Profile</a>
-            <a href="#">My Reviews</a>
-            <a href="#">Switch Account</a>
+            <a href="Reviews.html">My Reviews</a>
             <a href="#" id="logoutBtn">Log Out</a>
           </div>
         </div>
@@ -77,22 +132,15 @@
       <h2 class="text-4xl font-bold text-center mb-4">Our Products</h2>
 
       <!-- NEW PARAGRAPH -->
-      <p class="text-center text-gray-600 mb-12 text-lg">
+      <p class="text-center text-gray-600 mb-6 text-lg">
         Explore our premium collection of winter wear, hoodies, jackets, and more — all crafted with quality and
         comfort.
       </p>
 
-      <!-- Auto-render product grid -->
       <div id="productsGrid" class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
 
-      <div id="pagination" class="flex justify-center items-center gap-4 mt-12">
-        <button id="prevBtn" class="px-4 py-2 bg-gray-200 rounded-lg">← Prev</button>
-
-        <span id="pageNumber" class="font-semibold text-light-blue-600"></span>
-
-        <button id="nextBtn" class="px-4 py-2 bg-gray-200 rounded-lg">Next →</button>
-      </div>
-
+      <!-- Pagination Container -->
+      <div id="paginationContainer"></div>
     </div>
   </section>
 
@@ -102,52 +150,13 @@
   <script src="js/header.js" defer></script>
   <script src="js/products.js" defer></script>
   <script src="js/cart.js" defer></script>
+  <script src="js/optimize.js" defer></script>
 
   <script>
-    // =============================
-    //  Render All 20 Products
-    // =============================
-    document.addEventListener("DOMContentLoaded", () => {
-
-      const grid = document.getElementById("productsGrid");
-      grid.innerHTML = "";
-
-      PRODUCTS.forEach(p => {
-        grid.innerHTML += `
-          <div class="bg-white shadow rounded-xl p-4 product-card transition cursor-pointer">
-            <img src="${p.image}" class="w-full h-60 object-cover rounded-lg mb-4">
-            
-            <h3 class="font-bold text-lg">${p.title}</h3>
-            <p class="text-gray-600 text-sm mb-2">৳${p.price}</p>
-
-            <a href="product-detail.html?id=${p.id}" class="text-blue-600 font-semibold">
-              Order Now →
-            </a>
-          </div>
-        `;
-      });
-
-      // Profile dropdown toggle
-      const profileBtn = document.getElementById('profileBtn');
-      const profileDropdown = document.getElementById('profileDropdown');
-
-      profileBtn.addEventListener('click', function() {
-        profileDropdown.classList.toggle('hidden');
-      });
-
-      // Close dropdown when clicking outside
-      document.addEventListener('click', function(event) {
-        if (!profileBtn.contains(event.target) && !profileDropdown.contains(event.target)) {
-          profileDropdown.classList.add('hidden');
-        }
-      });
-
-      // Logout functionality
-      const logoutBtn = document.getElementById('logoutBtn');
-      logoutBtn.addEventListener('click', function() {
-        localStorage.removeItem('demo_session');
-        location.reload();
-      });
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof updateCartCount === 'function') {
+        updateCartCount();
+      }
     });
   </script>
 
@@ -178,7 +187,7 @@
             <li><a href="#how" class="hover:text-white transition">How It Works</a></li>
             <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
             <li><a href="#testimonials" class="hover:text-white transition">Reviews</a></li>
-            <li><a href="admin.html" class="hover:text-white transition">For Business</a></li>
+            <li><a href="admin/admin.html" class="hover:text-white transition">For Business</a></li>
           </ul>
         </div>
 
@@ -219,6 +228,31 @@
       </div>
     </div>
   </footer>
+
+  <!-- Go to Top Button -->
+  <button id="goToTopBtn" title="Go to Top">↑</button>
+
+  <script>
+    // Go to Top Button Functionality
+    const goToTopBtn = document.getElementById('goToTopBtn');
+
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        goToTopBtn.classList.add('show');
+      } else {
+        goToTopBtn.classList.remove('show');
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    goToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
 
 </body>
 

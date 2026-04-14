@@ -10,9 +10,9 @@ class UserProfile {
     TRACKING_STEPS = [
         { status: 'pending', label: 'Order Received', icon: '🕓', minSeconds: 0 },
         { status: 'paid', label: 'Payment Confirmed', icon: '💳', minSeconds: 20 },
-        { status: 'processing', label: 'Preparing Order', icon: '⚙️', minSeconds: 40 },
-        { status: 'shipped', label: 'Shipped', icon: '🚚', minSeconds: 80 },
-        { status: 'delivered', label: 'Delivered', icon: '✅', minSeconds: 120 }
+        { status: 'processing', label: 'Preparing Order', icon: '⚙️', minSeconds: 25 },
+        { status: 'shipped', label: 'Shipped', icon: '🚚', minSeconds: 30 },
+        { status: 'delivered', label: 'Delivered', icon: '✅', minSeconds: 35 }
     ];
 
     STATUS_PRIORITY = {

@@ -1,25 +1,27 @@
 // Login button - redirect based on auth status
     document.getElementById('loginBtn').addEventListener('click', () => {
-      const token = localStorage.getItem('auth_token');
-      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      const session = localStorage.getItem('demo_session');
+      const token = localStorage.getItem('auth_token') || session;
+      const user = session ? JSON.parse(session) : JSON.parse(localStorage.getItem('user') || '{}');
       
       if (token) {
         // User is logged in - redirect to profile or admin
         if (user.role === 'admin' || user.role === 'manager') {
-          location.href = '/admin.html';
+          location.href = 'admin/admin.html';
         } else {
-          location.href = '/profile.html';
+          location.href = 'profile.html';
         }
       } else {
         // User not logged in - go to login
-        location.href = '/login.html';
+        location.href = 'login.html';
       }
     });
 
     // Update login button text based on auth status
     function updateAuthButton() {
-      const token = localStorage.getItem('auth_token');
-      const user = JSON.parse(localStorage.getItem('user') || '{}');
+      const session = localStorage.getItem('demo_session');
+      const token = localStorage.getItem('auth_token') || session;
+      const user = session ? JSON.parse(session) : JSON.parse(localStorage.getItem('user') || '{}');
       const loginBtn = document.getElementById('loginBtn');
       
       if (token) {

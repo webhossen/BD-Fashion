@@ -12,14 +12,24 @@ class AuthGuard {
             return;
         }
 
-        // If not logged in, redirect to login
-        if (!this.currentUser) {
+        // Only protect account pages that should not be browsed without login
+        if (this.isProtectedPage() && !this.currentUser) {
             window.location.href = 'login.html';
             return;
         }
 
-        // User is logged in, update UI
+        // Update UI for all other pages without forcing login
         this.updateUIWithUserInfo();
+    }
+
+    // Check if current page is protected and must require login before access
+    isProtectedPage() {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const protectedPages = [
+            'profile.html',
+            'order-view.html'
+        ];
+        return protectedPages.includes(currentPage);
     }
 
     // Get current user from session
@@ -43,8 +53,15 @@ class AuthGuard {
         const headerRight = header.querySelector('.header-right, .flex.items-center.gap-3');
         if (!headerRight) return;
 
+        // If the page already has a profile button, update its title and leave it in place
+        const existingProfileBtn = headerRight.querySelector('#profileBtn');
+        if (existingProfileBtn) {
+            existingProfileBtn.title = this.currentUser ? 'My Profile' : 'Login';
+            return;
+        }
+
         // Only add profile icon link if no dropdown trigger exists
-        if (headerRight.querySelector('#profileBtn') || headerRight.querySelector('.profile-icon-link')) {
+        if (headerRight.querySelector('.profile-icon-link')) {
             return;
         }
 
@@ -64,7 +81,12 @@ class AuthGuard {
     // Get current user (can be called from other scripts)
     static getCurrentUser() {
         const session = localStorage.getItem('demo_session');
-        return session ? JSON.parse(session) : null;
+        const currentUser = session ? JSON.parse(session) : null;
+        if (!currentUser) return null;
+        return {
+            ...currentUser,
+            role: currentUser.role || 'customer'
+        };
     }
 }
 

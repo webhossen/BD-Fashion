@@ -339,6 +339,14 @@ function updateRatingDisplay(reviews) {
 // =========================
 function setupReviewForm(product) {
     let selectedStars = 0;
+    const currentUser = JSON.parse(localStorage.getItem('demo_session') || localStorage.getItem('user') || 'null');
+
+    if (currentUser?.name) {
+        const reviewerNameInput = document.getElementById("reviewerName");
+        if (reviewerNameInput) {
+            reviewerNameInput.value = currentUser.name;
+        }
+    }
 
     // STAR SELECT
     document.querySelectorAll("#selectStars span").forEach(star => {
@@ -356,6 +364,7 @@ function setupReviewForm(product) {
     document.getElementById("submitReview").addEventListener("click", async () => {
         const name = document.getElementById("reviewerName").value.trim();
         const text = document.getElementById("reviewText").value.trim();
+        const currentUser = JSON.parse(localStorage.getItem('demo_session') || localStorage.getItem('user') || 'null');
 
         if (!name || !text || selectedStars === 0) {
             showToast("Please fill in your name, review text, and select a star rating.", 'error');
@@ -370,7 +379,9 @@ function setupReviewForm(product) {
             stars: selectedStars,
             verified: false,
             image: null,
-            date: new Date().toLocaleString()
+            date: new Date().toLocaleString(),
+            userEmail: currentUser?.email || null,
+            userName: currentUser?.name || name
         });
 
         saveReviews(product.id, reviews);

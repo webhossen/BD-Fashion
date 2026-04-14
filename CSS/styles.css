@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 /* ============================================
    ROOT & GLOBAL STYLES
    ============================================ */
@@ -31,7 +31,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
@@ -77,7 +77,7 @@ p {
 
 a {
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 /* ============================================
@@ -92,7 +92,7 @@ button,
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .btn-primary {
@@ -102,8 +102,6 @@ button,
 
 .btn-primary:hover {
   background-color: var(--primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
 }
 
 .btn-secondary {
@@ -113,7 +111,6 @@ button,
 
 .btn-secondary:hover {
   background-color: var(--success-dark);
-  transform: translateY(-2px);
 }
 
 .btn-danger {
@@ -141,7 +138,7 @@ select {
   border-radius: 0.5rem;
   font-size: 1rem;
   font-family: inherit;
-  transition: all 0.3s ease;
+  transition: border-color 0.2s ease;
 }
 
 input:focus,
@@ -176,11 +173,10 @@ label {
   border-radius: 0.75rem;
   padding: 1.5rem;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
 }
 
 .card-hover {
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
 .card-hover:hover {
@@ -445,22 +441,20 @@ nav {
 
 .cta-button {
   background: var(--primary);
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .cta-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+  background-color: #2563eb;
 }
 
 .cta-secondary {
   background: var(--success);
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .cta-secondary:hover {
-  background: var(--success-dark);
-  transform: translateY(-2px);
+  background-color: var(--success-dark);
 }
 
 /* ============================================

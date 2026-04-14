@@ -4,21 +4,51 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="BD Fashion - Custom apparel and clothing" />
   <title>BD Fashion</title>
-  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
-  <link rel="stylesheet" href="CSS/styles.css">
-  <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="64x64" href="Image/favicon-64.png">
-  <link rel="icon" type="image/png" sizes="128x128" href="Image/favicon-128.png">
-  <link rel="icon" type="image/png" sizes="256x256" href="Image/favicon-256.png">
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" />
+  <link rel="stylesheet" href="CSS/styles.css" />
+  <link rel="icon" type="image/png" href="Image/favicon-32.png" sizes="32x32" />
   <style>
     .product-card {
-      transition: 0.3s ease;
+      transition: box-shadow 0.2s ease;
     }
 
     .product-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 30px rgb(0, 0, 0);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Go to Top Button */
+    #goToTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.15s ease, visibility 0.15s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    #goToTopBtn:hover {
+      background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+    }
+
+    #goToTopBtn.show {
+      opacity: 1;
+      visibility: visible;
     }
   </style>
 
@@ -34,10 +64,10 @@
       </a>
 
       <nav id="main-nav">
-        <a href="index.html" class="nav-link">Home</a>
+        <a href="index.html" class="nav-link active">Home</a>
         <a href="products.html" class="nav-link">Products</a>
         <a href="contact.html" class="nav-link">Contact</a>
-        <a href="about.html" class="nav-link active">About</a>
+        <a href="about.html" class="nav-link">About</a>
         <a href="order-view.html" class="nav-link">My Order</a>
       </nav>
 
@@ -48,8 +78,8 @@
           </button>
           <div id="profileDropdown" class="dropdown hidden">
             <a href="profile.html">Profile</a>
-            <a href="#">My Reviews</a>
-            <a href="#">Switch Account</a>
+            <a href="Reviews.html">My Reviews</a>
+            <a href="#" id="adminLink" class="hidden">Admin Panel</a>
             <a href="#" id="logoutBtn">Log Out</a>
           </div>
         </div>
@@ -70,41 +100,41 @@
     <div class="max-w-7xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10">
       <div class="space-y-6">
         <h1 class="text-5xl md:text-6xl font-bold leading-tight">
-          Design Your Own <span class="text-yellow-300">Custom T-Shirt</span>
+          Premium <span class="text-yellow-300">Custom T-Shirts</span> Made Easy
         </h1>
         <p class="text-xl text-blue-100">
-          Upload your artwork, add text, choose colours, and get print-ready designs in minutes. No design experience
-          needed!
+          Design your own tee with our fast online editor, premium fabrics, and professional print quality — ready for teams,
+          events, brands, and everyday style.
         </p>
         <div class="flex flex-col md:flex-row gap-4 pt-4">
           <a href="products.html"
             class="inline-flex items-center justify-center px-8 py-4 bg-white text-blue-600 rounded-lg font-bold hover:bg-gray-100 transition">
-            Start Order Now
+            Start Designing
           </a>
           <a href="about.html"
             class="inline-flex items-center justify-center px-8 py-4 bg-transparent border-2 border-white text-white rounded-lg font-bold hover:bg-white hover:text-blue-600 transition">
-            Learn More
+            Explore Our Story
           </a>
 
         </div>
         <div class="flex gap-6 pt-4 text-sm">
           <div class="flex items-center gap-2">
-            <span class="text-2xl">✓</span> Free Design Editor
+            <span class="text-2xl">✓</span> Fast T-shirt Printing
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-2xl">✓</span> Fast Shipping
+            <span class="text-2xl">✓</span> Premium Cotton Tees
           </div>
           <div class="flex items-center gap-2">
-            <span class="text-2xl">✓</span> Quality Prints
+            <span class="text-2xl">✓</span> Safe Checkout
           </div>
         </div>
       </div>
 
       <div class="text-center">
         <div class="bg-white p-8 rounded-2xl shadow-2xl inline-block relative">
-          <img src="Image/new (10).png" alt="Black Leather Jacket"
+          <img id="heroImage" src="Image/man/man(10).png" alt="Custom t-shirt mockup"
             class="w-64 h-80 object-cover rounded-xl shadow-2xl"
-            style="transform: perspective(1200px) rotateX(6deg) rotateY(-6deg); transition: transform 0.35s ease-out;"
+            style="transform: perspective(1200px) rotateX(6deg) rotateY(-6deg); transition: opacity 0.5s ease-in-out, transform 0.5s ease-out;"
             onmouseover="this.style.transform='perspective(1200px) rotateX(10deg) rotateY(-10deg) scale(1.08)'"
             onmouseout="this.style.transform='perspective(1200px) rotateX(6deg) rotateY(-6deg) scale(1)'" />
           <div
@@ -119,82 +149,78 @@
   <!-- Trust Badges -->
   <section class="bg-white py-8 border-b">
     <div class="max-w-7xl mx-auto px-4">
-      <p class="text-center text-gray-600 text-sm mb-6">Trusted by thousands of customers</p>
+      <p class="text-center text-gray-600 text-sm mb-6">Trusted by Bangladesh’s custom apparel customers</p>
       <div class="grid md:grid-cols-5 gap-6 text-center">
         <div>
-          <div class="text-3xl font-bold text-blue-600">10K+</div>
-          <div class="text-sm text-gray-600">Happy Customers</div>
+          <div class="text-3xl font-bold text-blue-600">20K+</div>
+          <div class="text-sm text-gray-600">Custom Tees Printed</div>
         </div>
         <div>
-          <div class="text-3xl font-bold text-green-600">50K+</div>
-          <div class="text-sm text-gray-600">Designs Created</div>
+          <div class="text-3xl font-bold text-green-600">35K+</div>
+          <div class="text-sm text-gray-600">Designs Delivered</div>
         </div>
         <div>
-          <div class="text-3xl font-bold text-purple-600">100%</div>
-          <div class="text-sm text-gray-600">Satisfaction Rate</div>
+          <div class="text-3xl font-bold text-purple-600">99.8%</div>
+          <div class="text-sm text-gray-600">Print Accuracy</div>
         </div>
         <div>
-          <div class="text-3xl font-bold text-red-600">24/7</div>
-          <div class="text-sm text-gray-600">Customer Support</div>
+          <div class="text-3xl font-bold text-red-600">2-5</div>
+          <div class="text-sm text-gray-600">Day Production</div>
         </div>
         <div>
           <div class="text-3xl font-bold text-indigo-600">5★</div>
-          <div class="text-sm text-gray-600">Average Rating</div>
+          <div class="text-sm text-gray-600">Trusted Service</div>
         </div>
       </div>
     </div>
   </section>
 
   <!--#Home Section -->
-  <section id=#Home" class="py-20 bg-gray-50">
+  <section id="Home" class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold mb-4">Powerful Features</h2>
-        <p class="text-lg text-gray-600">Everything you need to create amazing custom t-shirts</p>
+        <h2 class="text-4xl font-bold mb-4">Why Customers Love Our T-Shirts</h2>
+        <p class="text-lg text-gray-600">Everything you need to make standout custom apparel for every occasion.</p>
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
         <div class="bg-white p-8 rounded-xl shadow-md card-hover">
           <div class="feature-icon mb-4">🎨</div>
-          <h3 class="text-xl font-bold mb-3">Advanced Editor</h3>
-          <p class="text-gray-600">Drag-and-drop editor with layers, text effects, image uploads, and real-time mockup
-            preview.</p>
+          <h3 class="text-xl font-bold mb-3">Easy Design Studio</h3>
+          <p class="text-gray-600">Create custom artwork with text, icons, image uploads, and live T-shirt previews.</p>
         </div>
 
         <div class="bg-white p-8 rounded-xl shadow-md card-hover">
           <div class="feature-icon mb-4"><img src="Image/Multiple Views.png" alt="Multiple Views" class="h-12 w-12 mx-auto"></div>
-          <h3 class="text-xl font-bold mb-3">Multiple Views</h3>
-          <p class="text-gray-600">Design for front, back, and sleeves. Toggle between views to see your complete
-            design.</p>
+          <h3 class="text-xl font-bold mb-3">Front & Back Views</h3>
+          <p class="text-gray-600">Design both sides of your tee and check every detail before you place your order.</p>
         </div>
 
         <div class="bg-white p-8 rounded-xl shadow-md card-hover">
           <div class="feature-icon mb-4"><img src="Image/Unlimited Colors.png" alt="Unlimited Colors" class="h-12 w-12 mx-auto"></div>
-          <h3 class="text-xl font-bold mb-3">Unlimited Colors</h3>
-          <p class="text-gray-600">Choose from any color in our palette. See live mockup updates as you customize.</p>
+          <h3 class="text-xl font-bold mb-3">Unlimited Color Options</h3>
+          <p class="text-gray-600">Pick the perfect shirt shade and print colors for a professional custom finish.</p>
         </div>
 
         <div class="bg-white p-8 rounded-xl shadow-md card-hover">
           <div class="feature-icon mb-4"><img src="Image/Save & Reuse.png" alt="Save & Reuse" class="h-12 w-12 mx-auto"></div>
-          <h3 class="text-xl font-bold mb-3">Save & Reuse</h3>
-          <p class="text-gray-600">Save your designs and reorder anytime. Modify saved designs or create variations.</p>
+          <h3 class="text-xl font-bold mb-3">Save Your Designs</h3>
+          <p class="text-gray-600">Reuse previous artwork, edit saved projects, and reorder favorites whenever you want.</p>
         </div>
 
         <div class="bg-white p-8 rounded-xl shadow-md card-hover">
           <div class="feature-icon mb-4"><img src="Image/Fast Delivery.png" alt="Fast Delivery" class="h-12 w-12 mx-auto"></div>
           <h3 class="text-xl font-bold mb-3">Fast Production</h3>
-          <p class="text-gray-600">Orders ship within 2-3 business days. Premium quality DTG and screen printing.</p>
+          <p class="text-gray-600">Get your t-shirts printed and shipped quickly using our premium DTG and screen print services.</p>
         </div>
 
         <div class="bg-white p-8 rounded-xl shadow-md card-hover">
           <div class="feature-icon mb-4"><img src="Image/Easy Payment.png" alt="Easy Payment" class="h-12 w-12 mx-auto"></div>
-          <h3 class="text-xl font-bold mb-3">Easy Payment</h3>
-          <p class="text-gray-600">BKash, Nagad, Rocket, Stripe, and PayPal. Secure checkout with order tracking.</p>
+          <h3 class="text-xl font-bold mb-3">Secure Checkout</h3>
+          <p class="text-gray-600">Pay safely with mobile wallets, cards, or local payment options and track every order.</p>
         </div>
       </div>
     </div>
-  </section>
-
   </section>
   <!-- End of#Home -->
 
@@ -202,80 +228,80 @@
   <section id="products" class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold mb-4">Our Best Products</h2>
-        <p class="text-lg text-gray-600">Premium quality t-shirts ready to customize & order</p>
+        <h2 class="text-4xl font-bold mb-4">Featured Custom T-Shirts</h2>
+        <p class="text-lg text-gray-600">Browse our most popular tee styles ready for your logo, slogan, or artwork.</p>
       </div>
 
       <div class="grid md:grid-cols-4 gap-8">
 
         <!-- Product 1 -->
         <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
-          <img src="Image/new (1).png" class="w-full h-56 object-cover rounded-lg mb-4">
-          <h3 class="font-bold text-lg mb-1">Black Premium Tee</h3>
-          <p class="text-gray-600 text-sm mb-3">Soft, high-quality cotton</p>
+          <img src="Image/man/man(14).png" class="w-full h-56 object-cover rounded-lg mb-4" alt="Custom black tee">
+          <h3 class="font-bold text-lg mb-1">Custom Black Tee</h3>
+          <p class="text-gray-600 text-sm mb-3">Soft premium cotton with sharp print detail for everyday wear.</p>
           <a href="products.html"
             class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">Order Now</a>
         </div>
 
         <!-- Product 2 -->
         <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
-          <img src="Image/new (2).png" class="w-full h-56 object-cover rounded-lg mb-4">
+          <img src="Image/man/man(2).png" class="w-full h-56 object-cover rounded-lg mb-4" alt="White classic custom tee">
           <h3 class="font-bold text-lg mb-1">White Classic Tee</h3>
-          <p class="text-gray-600 text-sm mb-3">Perfect for everyday wear</p>
+          <p class="text-gray-600 text-sm mb-3">A timeless silhouette perfect for printed logos and graphic designs.</p>
           <a href="products.html"
             class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">Order Now</a>
         </div>
 
         <!-- Product 3 -->
         <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
-          <img src="Image/new (3).png" class="w-full h-56 object-cover rounded-lg mb-4">
+          <img src="Image/man/man(15).png" class="w-full h-56 object-cover rounded-lg mb-4" alt="Sport dry fit custom shirt">
           <h3 class="font-bold text-lg mb-1">Sport Dry-Fit Tee</h3>
-          <p class="text-gray-600 text-sm mb-3">Breathable & lightweight</p>
+          <p class="text-gray-600 text-sm mb-3">Lightweight, breathable fabric ideal for team uniforms and activewear.</p>
           <a href="products.html"
             class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">Order Now</a>
         </div>
 
         <!-- Product 4 -->
         <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
-          <img src="Image/new (4).png" class="w-full h-56 object-cover rounded-lg mb-4">
+          <img src="Image/man/man(3).png" class="w-full h-56 object-cover rounded-lg mb-4" alt="Premium v-neck custom tee">
           <h3 class="font-bold text-lg mb-1">Premium V-Neck</h3>
-          <p class="text-gray-600 text-sm mb-3">Modern and stylish</p>
+          <p class="text-gray-600 text-sm mb-3">A modern cut with crisp printing for bold, professional style.</p>
           <a href="products.html"
             class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">Order Now</a>
         </div>
 
         <!-- Product 5 -->
         <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
-          <img src="Image/new (14).png" class="w-full h-56 object-cover rounded-lg mb-4">
-          <h3 class="font-bold text-lg mb-1">Black Premium Tee</h3>
-          <p class="text-gray-600 text-sm mb-3">Soft, high-quality cotton</p>
+          <img src="Image/man/man(5).png" class="w-full h-56 object-cover rounded-lg mb-4" alt="Black promo custom tshirt">
+          <h3 class="font-bold text-lg mb-1">Signature Black Tee</h3>
+          <p class="text-gray-600 text-sm mb-3">Classic black tee designed for rich print saturation and everyday comfort.</p>
           <a href="products.html"
             class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">Order Now</a>
         </div>
 
         <!-- Product 6 -->
         <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
-          <img src="Image/new (16).png" class="w-full h-56 object-cover rounded-lg mb-4">
-          <h3 class="font-bold text-lg mb-1">White Classic Tee</h3>
-          <p class="text-gray-600 text-sm mb-3">Perfect for everyday wear</p>
+          <img src="Image/man/man(7).png" class="w-full h-56 object-cover rounded-lg mb-4" alt="White premium custom tee">
+          <h3 class="font-bold text-lg mb-1">Essentials White Tee</h3>
+          <p class="text-gray-600 text-sm mb-3">A versatile base shirt for corporate, event, and custom merchandise orders.</p>
           <a href="products.html"
             class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">Order Now</a>
         </div>
 
         <!-- Product 7 -->
         <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
-          <img src="Image/new (17).png" class="w-full h-56 object-cover rounded-lg mb-4">
-          <h3 class="font-bold text-lg mb-1">Sport Dry-Fit Tee</h3>
-          <p class="text-gray-600 text-sm mb-3">Breathable & lightweight</p>
+          <img src="Image/man/man(9).png" class="w-full h-56 object-cover rounded-lg mb-4" alt="Sport custom tee">
+          <h3 class="font-bold text-lg mb-1">Active Performance Tee</h3>
+          <p class="text-gray-600 text-sm mb-3">Breathable build and custom printing made for athletes and active teams.</p>
           <a href="products.html"
             class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">Order Now</a>
         </div>
 
         <!-- Product 8 -->
         <div class="bg-gray-50 p-6 rounded-xl shadow transition product-card">
-          <img src="Image/new (8).png" class="w-full h-56 object-cover rounded-lg mb-4">
-          <h3 class="font-bold text-lg mb-1">Premium V-Neck</h3>
-          <p class="text-gray-600 text-sm mb-3">Modern and stylish</p>
+          <img src="Image/man/man(11).png" class="w-full h-56 object-cover rounded-lg mb-4" alt="Stylish custom v-neck shirt">
+          <h3 class="font-bold text-lg mb-1">Signature V-Neck</h3>
+          <p class="text-gray-600 text-sm mb-3">A stylish cut with high-quality printing for brand identity and gifts.</p>
           <a href="products.html"
             class="block text-center bg-blue-600 text-white font-semibold py-2 rounded-lg hover:bg-blue-700 transition">Order Now</a>
         </div>
@@ -443,11 +469,11 @@
         <h3 class="text-2xl font-bold mb-2">Stay Updated</h3>
         <p class="text-gray-600 mb-6">Get exclusive offers, design tips, and new product launches delivered to your
           inbox.</p>
-        <form id="newsletterForm" class="flex gap-2 mb-4">
+        <form id="newsletterForm" class="flex flex-col sm:flex-row gap-2 mb-4">
           <input type="email" name="email" placeholder="Enter your email"
             class="flex-1 px-4 py-3 border rounded-lg focus:outline-none focus:border-blue-600" required />
           <button type="submit"
-            class="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
+            class="w-full sm:w-auto px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
             Subscribe
           </button>
         </form>
@@ -528,37 +554,80 @@
   <script src="js/index.js" defer></script>
   <script src="js/cart.js" defer></script>
 
-
-  <!-- Session Management Script -->
   <script>
-    // Demo Session Management
     document.addEventListener('DOMContentLoaded', function() {
-      updateCartCount();
+      if (typeof updateCartCount === 'function') {
+        updateCartCount();
+      }
 
-      // Profile dropdown toggle
-      const profileBtn = document.getElementById('profileBtn');
-      const profileDropdown = document.getElementById('profileDropdown');
+      // Auto-slide hero image carousel with zoom effect
+      const heroImage = document.getElementById('heroImage');
+      if (heroImage) {
+        let currentImageIndex = 10;
+        let autoSlideInterval;
 
-      profileBtn.addEventListener('click', function() {
-        profileDropdown.classList.toggle('hidden');
-      });
+        const changeImage = () => {
+          // Cycle from 1 to 10
+          currentImageIndex = currentImageIndex === 10 ? 1 : currentImageIndex + 1;
+          heroImage.style.opacity = '0.5';
+          heroImage.style.transform = 'perspective(1200px) rotateX(6deg) rotateY(-6deg) scale(0.95)';
+          
+          setTimeout(() => {
+            heroImage.src = `Image/man/man(${currentImageIndex}).png`;
+            heroImage.style.opacity = '1';
+            // Start zoom in effect
+            heroImage.style.transform = 'perspective(1200px) rotateX(6deg) rotateY(-6deg) scale(1.1)';
+            
+            // Zoom out back to normal
+            setTimeout(() => {
+              heroImage.style.transform = 'perspective(1200px) rotateX(6deg) rotateY(-6deg) scale(1)';
+            }, 500);
+          }, 250);
+        };
 
-      // Close dropdown when clicking outside
-      document.addEventListener('click', function(event) {
-        if (!profileBtn.contains(event.target) && !profileDropdown.contains(event.target)) {
-          profileDropdown.classList.add('hidden');
-        }
-      });
+        const startAutoSlide = () => {
+          autoSlideInterval = setInterval(changeImage, 3500); // Change image every 3.5 seconds
+        };
 
-      // Logout functionality
-      const logoutBtn = document.getElementById('logoutBtn');
-      logoutBtn.addEventListener('click', function() {
-        localStorage.removeItem('demo_session');
-        location.reload();
+        const stopAutoSlide = () => {
+          clearInterval(autoSlideInterval);
+        };
+
+        // Add transition for smooth zoom effect
+        heroImage.style.transition = 'opacity 0.5s ease-in-out, transform 0.8s ease-in-out';
+
+        // Start auto-slide
+        startAutoSlide();
+
+        // Pause on hover, resume on mouse leave
+        heroImage.parentElement.addEventListener('mouseenter', stopAutoSlide);
+        heroImage.parentElement.addEventListener('mouseleave', startAutoSlide);
+      }
+    });
+  </script>
+
+  <!-- Go to Top Button -->
+  <button id="goToTopBtn" title="Go to Top">↑</button>
+
+  <script>
+    // Go to Top Button Functionality
+    const goToTopBtn = document.getElementById('goToTopBtn');
+
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        goToTopBtn.classList.add('show');
+      } else {
+        goToTopBtn.classList.remove('show');
+      }
+    });
+
+    // Smooth scroll to top when clicked
+    goToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
       });
     });
   </script>
 
-</body>
-
-</html>

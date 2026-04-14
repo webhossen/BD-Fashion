@@ -7,6 +7,41 @@
   <title>Order — BD Fashion</title>
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
   <link rel="stylesheet" href="CSS/styles.css">
+  <style>
+    /* Go to Top Button */
+    #goToTopBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    #goToTopBtn:hover {
+      background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    #goToTopBtn.show {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
 </head>
 
 <body style="background:#ffffff;">
@@ -31,8 +66,7 @@
           </button>
           <div id="profileDropdown" class="dropdown hidden">
             <a href="profile.html">Profile</a>
-            <a href="#">My Reviews</a>
-            <a href="#">Switch Account</a>
+            <a href="Reviews.html">My Reviews</a>
             <a href="#" id="logoutBtn">Log Out</a>
           </div>
         </div>
@@ -177,7 +211,7 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <!-- bKash -->
             <label class="paymentOption relative cursor-pointer">
-              <input type="radio" name="paymentMethod" value="bkash" checked class="paymentRadio hidden" />
+              <input type="radio" name="paymentMethod" value="bkash" class="paymentRadio hidden" />
               <div class="payment-card p-4 border-2 border-pink-500 rounded-lg text-center hover:border-pink-600 hover:shadow-lg transition bg-pink-50">
                 <div class="text-4xl mb-2">📱</div>
                 <div class="font-semibold text-sm">bKash</div>
@@ -209,7 +243,7 @@
 
         <!-- Selected Payment Details -->
         <div id="paymentDetails" class="bg-gray-50 p-4 rounded-lg border border-gray-200">
-          <p class="text-sm text-gray-600"><strong>Selected:</strong> <span id="selectedPaymentText">bKash (Mobile Payment)</span></p>
+          <p class="text-sm text-gray-600"><strong>Selected:</strong> <span id="selectedPaymentText">None</span></p>
         </div>
       </div>
     </div>
@@ -363,38 +397,36 @@
 
   <script src="https://sandbox.bkash.dev/static/js/checkout.js"></script>
 
-  <!-- Session Management Script -->
   <script>
-    // Demo Session Management
     document.addEventListener('DOMContentLoaded', function() {
       if (typeof updateCartCount === 'function') {
         updateCartCount();
       }
+    });
+  </script>
 
-      const profileBtn = document.getElementById('profileBtn');
-      const profileDropdown = document.getElementById('profileDropdown');
-      const logoutBtn = document.getElementById('logoutBtn');
+  <!-- Go to Top Button -->
+  <button id="goToTopBtn" title="Go to Top">↑</button>
 
-      if (profileBtn && profileDropdown) {
-        profileBtn.addEventListener('click', function(event) {
-          event.stopPropagation();
-          profileDropdown.classList.toggle('hidden');
-        });
+  <script>
+    // Go to Top Button Functionality
+    const goToTopBtn = document.getElementById('goToTopBtn');
 
-        document.addEventListener('click', function(event) {
-          if (!profileBtn.contains(event.target) && !profileDropdown.contains(event.target)) {
-            profileDropdown.classList.add('hidden');
-          }
-        });
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        goToTopBtn.classList.add('show');
+      } else {
+        goToTopBtn.classList.remove('show');
       }
+    });
 
-      if (logoutBtn) {
-        logoutBtn.addEventListener('click', function(event) {
-          event.preventDefault();
-          localStorage.removeItem('demo_session');
-          location.reload();
-        });
-      }
+    // Smooth scroll to top when clicked
+    goToTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
   </script>
 

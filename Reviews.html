@@ -1,18 +1,30 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BD Fashion</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Reviews — BD Fashion</title>
   <link rel="stylesheet" href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css">
   <link rel="stylesheet" href="CSS/styles.css">
-  <link rel="icon" type="image/png" sizes="32x32" href="Image/favicon-32.png">
-  <link rel="icon" type="image/png" sizes="64x64" href="Image/favicon-64.png">
-  <link rel="icon" type="image/png" sizes="128x128" href="Image/favicon-128.png">
-  <link rel="icon" type="image/png" sizes="256x256" href="Image/favicon-256.png">
-
   <style>
+    .review-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .review-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 30px rgb(0, 0, 0);
+    }
+
+    .review-image {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
     /* Go to Top Button */
     #goToTopBtn {
       position: fixed;
@@ -49,27 +61,25 @@
   </style>
 </head>
 
-<body class="bg-gray-50">
-  <!-- HEADER -->
+<body style="background:#ffffff;">
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-
       <a href="index.html" class="flex items-center">
-        <img src="Image/favicon-256.png" class="h-14 w-auto object-contain" alt="BD Fashion Logo">
+        <img src="Image/favicon-256.png" class="h-14 w-auto object-contain" alt="Logo">
       </a>
 
       <nav id="main-nav">
         <a href="index.html" class="nav-link">Home</a>
         <a href="products.html" class="nav-link">Products</a>
         <a href="contact.html" class="nav-link">Contact</a>
-        <a href="about.html" class="nav-link active">About</a>
+        <a href="about.html" class="nav-link">About</a>
         <a href="order-view.html" class="nav-link">My Order</a>
       </nav>
 
       <div class="flex items-center gap-3">
         <div class="relative">
           <button id="profileBtn" class="profile-btn" aria-label="Profile Menu">
-            <img src="Image/user.png" alt="Unlimited Colors" class="h-6 w-6 mx-auto">
+            <img src="Image/user.png" alt="Profile" class="h-6 w-6 mx-auto">
           </button>
           <div id="profileDropdown" class="dropdown hidden">
             <a href="profile.html">Profile</a>
@@ -86,97 +96,27 @@
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
-    <div class="max-w-5xl mx-auto px-4 text-center">
-      <h1 class="text-5xl font-bold mb-4">About BD Fashion</h1>
-      <p class="text-xl text-blue-100">
-        Bangladesh’ most trusted custom t-shirt studio — where quality, creativity, and fast delivery meet.
-      </p>
-    </div>
-  </section>
-
-  <!-- ABOUT CONTENT -->
-  <section class="py-16 bg-white">
-    <div class="max-w-5xl mx-auto px-4 space-y-12">
-
-      <!-- Who We Are -->
-      <div>
-        <h2 class="text-3xl font-bold mb-4">Who We Are</h2>
-        <p class="text-gray-700 leading-relaxed text-lg">
-          BD Fashion is a custom t-shirt brand built for creators, teams, and businesses across Bangladesh.
-          We deliver premium tees with crisp print quality, comfortable fabrics, and fast service.
-        </p>
-      </div>
-
-      <!-- Our Story -->
-      <div>
-        <h2 class="text-3xl font-bold mb-4">Our Story</h2>
-        <p class="text-gray-700 leading-relaxed text-lg">
-          What started as a local printing studio has become a full-service online experience.
-          Today we help hundreds of customers bring their ideas to life with custom shirts for events,
-          promotions, schools, workwear, and personal style.
-        </p>
-      </div>
-
-      <!-- Mission & Vision -->
-      <div class="grid md:grid-cols-2 gap-10 mt-12">
-        <div class="bg-gray-50 p-8 rounded-xl shadow">
-          <h3 class="text-2xl font-bold mb-2">🎯 Our Mission</h3>
-          <p class="text-gray-700">
-            To make custom t-shirts simple, affordable, and professional — so every customer can create
-            standout apparel with confidence.
+  <main class="max-w-7xl mx-auto px-4 py-20">
+    <section class="bg-white rounded-xl shadow p-8 mb-8">
+      <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-6">
+        <div>
+          <h1 class="text-4xl font-bold mb-3">My Reviews</h1>
+          <p class="text-gray-600 max-w-2xl">
+            All product reviews submitted from your account are stored here. Manage and revisit your ratings from a single place.
           </p>
         </div>
-
-        <div class="bg-gray-50 p-8 rounded-xl shadow">
-          <h3 class="text-2xl font-bold mb-2">🌟 Our Vision</h3>
-          <p class="text-gray-700">
-            To lead Bangladesh in custom apparel by combining exceptional print quality, fast turnaround,
-            and personalized support for every order.
-          </p>
+        <div class="text-right text-sm text-gray-500">
+          <div id="reviewCount">Loading reviews...</div>
+          <div id="reviewTip">Reviews are saved locally and will appear automatically after submission.</div>
         </div>
       </div>
+    </section>
 
-      <!-- Why Choose Us -->
-      <div class="mt-16">
-        <h2 class="text-3xl font-bold mb-6 text-center">Why Choose BD Fashion?</h2>
+    <section id="reviewHistoryList" class="space-y-6">
+      <!-- Review items will be rendered here -->
+    </section>
+  </main>
 
-        <div class="grid md:grid-cols-3 gap-8">
-
-          <div class="bg-white p-8 shadow rounded-xl text-center">
-            <div class="text-4xl mb-3"><img src="Image/Premium Quality.png" alt="Premium Quality" class="h-12 w-12 mx-auto"></div>
-            <h4 class="font-bold text-xl mb-2">Premium Materials</h4>
-            <p class="text-gray-600">We use soft, durable fabrics and vibrant inks that hold up wash after wash.</p>
-          </div>
-
-          <div class="bg-white p-8 shadow rounded-xl text-center">
-            <div class="text-4xl mb-3"><img src="Image/Fast Delivery.png" alt="Fast Delivery" class="h-12 w-12 mx-auto"></div>
-            <h4 class="font-bold text-xl mb-2">Fast Production</h4>
-            <p class="text-gray-600">Orders are printed and shipped quickly so you get your tees when you need them.</p>
-          </div>
-
-          <div class="bg-white p-8 shadow rounded-xl text-center">
-            <div class="text-4xl mb-3"><img src="Image/Powerful Editor.png" alt="Powerful Editor" class="h-12 w-12 mx-auto"></div>
-            <h4 class="font-bold text-xl mb-2">Easy Design Tool</h4>
-            <p class="text-gray-600">Use our online studio to customize your t-shirt with text, logos, and full-color graphics.</p>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- CTA -->
-      <div class="text-center mt-20">
-        <a href="products.html"
-          class="px-8 py-4 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition">
-          Start Your Custom Tee
-        </a>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer class="bg-gray-900 text-white py-16">
     <div class="max-w-7xl mx-auto px-4">
       <div class="grid md:grid-cols-5 gap-8 mb-8">
@@ -199,19 +139,16 @@
         <div>
           <h4 class="font-semibold mb-4">Company</h4>
           <ul class="space-y-2 text-sm text-gray-400">
-            <li><a href="#how" class="hover:text-white transition">How It Works</a></li>
             <li><a href="contact.html" class="hover:text-white transition">Contact</a></li>
-            <li><a href="#testimonials" class="hover:text-white transition">Reviews</a></li>
+            <li><a href="about.html" class="hover:text-white transition">Terms</a></li>
           </ul>
         </div>
 
         <div>
           <h4 class="font-semibold mb-4">Support</h4>
           <ul class="space-y-2 text-sm text-gray-400">
-            <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
-            <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
-            <li><a href="contact.html" class="hover:text-white transition">Terms of Service</a></li>
-            <li><a href="contact.html" class="hover:text-white transition">Contact Support</a></li>
+            <li><a href="contact.html" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="contact.html" class="hover:text-white transition">Help Center</a></li>
           </ul>
         </div>
 
@@ -228,8 +165,6 @@
           </ul>
         </div>
       </div>
-      </div>
-
       <div class="border-t border-gray-800 pt-8 mt-8">
         <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-400">
           <div>© 2024 BD Fashion. All rights reserved.</div>
@@ -243,17 +178,12 @@
     </div>
   </footer>
 
+  <script src="https://js.stripe.com/v3/"></script>
   <script src="js/auth.js" defer></script>
-  <script src="js/header.js" defer></script>
+  <script src="js/products.js" defer></script>
   <script src="js/cart.js" defer></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      if (typeof updateCartCount === 'function') {
-        updateCartCount();
-      }
-    });
-  </script>
+  <script src="js/header.js" defer></script>
+  <script src="js/reviews.js" defer></script>
 
   <!-- Go to Top Button -->
   <button id="goToTopBtn" title="Go to Top">↑</button>
@@ -283,3 +213,4 @@
 </body>
 
 </html>
+

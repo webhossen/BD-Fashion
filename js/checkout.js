@@ -404,36 +404,50 @@ document.addEventListener('DOMContentLoaded', () => {
     updateOrderSummary();
   }, 100);
 
+  function updateSelectedPaymentDisplay(radioElement) {
+    const selectedText = document.getElementById('selectedPaymentText');
+    if (selectedText) {
+      selectedText.innerText = PAYMENT_METHODS[radioElement.value] || radioElement.value || 'None';
+    }
+
+    document.querySelectorAll('.paymentOption').forEach(option => {
+      const input = option.querySelector('.paymentRadio');
+      const card = option.querySelector('.payment-card');
+      if (!card || !input) return;
+
+      if (input.checked) {
+        card.classList.add('border-blue-500', 'shadow-lg', 'bg-blue-50');
+        card.classList.remove('border-gray-200');
+      } else {
+        card.classList.remove('border-blue-500', 'shadow-lg', 'bg-blue-50');
+        card.classList.add('border-gray-200');
+      }
+    });
+  }
+
   // Payment method radio buttons
   document.querySelectorAll('.paymentRadio').forEach(r => {
     r.addEventListener('change', () => {
-      // Update selected payment text
-      const selectedText = document.getElementById('selectedPaymentText');
-      if (selectedText) {
-        selectedText.innerText = PAYMENT_METHODS[r.value] || r.value;
-      }
-
-      // Update active styling on payment cards
-      document.querySelectorAll('.paymentOption').forEach(option => {
-        const input = option.querySelector('.paymentRadio');
-        const card = option.querySelector('.payment-card');
-        if (card) {
-          if (input.checked) {
-            card.classList.add('border-blue-500', 'shadow-lg', 'bg-blue-50');
-            card.classList.remove('border-gray-200');
-          } else {
-            card.classList.remove('border-blue-500', 'shadow-lg', 'bg-blue-50');
-            card.classList.add('border-gray-200');
-          }
-        }
-      });
+      updateSelectedPaymentDisplay(r);
     });
   });
 
-  // Trigger change event to initialize payment display
+  // Initialize payment display without pre-selecting any method
   const initialPayment = document.querySelector('input[name="paymentMethod"]:checked');
   if (initialPayment) {
-    initialPayment.dispatchEvent(new Event('change'));
+    updateSelectedPaymentDisplay(initialPayment);
+  } else {
+    const selectedText = document.getElementById('selectedPaymentText');
+    if (selectedText) {
+      selectedText.innerText = 'None';
+    }
+    document.querySelectorAll('.paymentOption').forEach(option => {
+      const card = option.querySelector('.payment-card');
+      if (card) {
+        card.classList.remove('border-blue-500', 'shadow-lg', 'bg-blue-50');
+        card.classList.add('border-gray-200');
+      }
+    });
   }
 
   // Apply coupon button
@@ -477,6 +491,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Place order button
   document.getElementById('placeOrderBtn').addEventListener('click', async () => {
+    const session = localStorage.getItem('demo_session');
+    if (!session) {
+      showToast('Please log in before placing your order.', 'error');
+      setTimeout(() => {
+        const target = encodeURIComponent(window.location.href);
+        window.location.href = `login.html?redirect=${target}`;
+      }, 1000);
+      return;
+    }
+
     const cart = getCartItems();
 
     if (cart.length === 0) {
